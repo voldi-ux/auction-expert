@@ -1,0 +1,1 @@
+<input {{$attributes}}  class=" text-white border-0 border-b-2 bg-transparent h-8" >

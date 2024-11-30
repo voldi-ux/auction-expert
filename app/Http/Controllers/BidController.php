@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
+use App\Models\Bid;
 use Illuminate\Http\Request;
 
-class ProfileController
+class BidController
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ProfileController
     /**
      * Display the specified resource.
      */
-    public function show(Profile $profile)
+    public function show(Bid $bid)
     {
         //
     }
@@ -42,7 +42,7 @@ class ProfileController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Profile $profile)
+    public function edit(Bid $bid)
     {
         //
     }
@@ -50,7 +50,7 @@ class ProfileController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, Bid $bid)
     {
         //
     }
@@ -58,7 +58,7 @@ class ProfileController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Profile $profile)
+    public function destroy(Bid $bid)
     {
         //
     }

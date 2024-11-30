@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@layer utilities {
+    .myBg {
+        background-image:  linear-gradient(to bottom right, #29292E, #000000);
+    }
+
+    .gradient2 {
+        background-image:  linear-gradient(to bottom right, #111117, #1C1C20);
+    }
+}
