@@ -1,24 +1,109 @@
-<x-app-layout>
-   <section class="p-8 h-full">
-    
-               <form id="changePassword" action="/change-password">
-                   
-               </form>
+<!-- to do
+1) Some fields should have values but marked as disabled  
+-->
 
-      <form action=""  class="w-full min-h-long p-4 gradient2 space-y-12 rounded-lg">
-          <div class="flex flex w-full space-x-4 text-lg text-white">
-                <div class="space-y-8 flex  flex-col md:w-1/2">
-                    <input type="text"  class="border-slate-700 border-0 border-b-2 bg-transparent h-8" name="Name" placeholder="Your name"/>
-                    <input type="text"  class="border-slate-700 border-0 border-b-2 bg-transparent h-8" name="surname" placeholder="Surname"/>
-                    <input type="text"  class="border-slate-700 border-0 border-b-2 bg-transparent h-8" disabled value="fixedemail@example.com" name="email" placeholder="Car Milage"/>
-                </div>
-            <div class="space-y-8 flex flex-col md:w-1/2">
-                <input type="text"  class="border-slate-700 border-0 border-b-2 bg-transparent h-8" name="gender" placeholder="Car Brand" disabled value="Male"/>
-                <input type="text"  class="border-slate-700 border-0 border-b-2 bg-transparent h-8" name="occupation" placeholder="Your occupation"/>
+<x-app-layout>
+    <section class="p-8 ">
+         <div class="rounded-lg gradient2 p-4">
+            <form id="changePassword" action="/change-password"></form>
+        <form
+            id="create-seller"
+            class="space-y-8 p-2"
+            action="/create-seller"
+            method="post"
+        >
+            @CSRF
+            <h1 class="text-lg text-white">Personal Details</h1>
+            <div class="flex space-x-4">
+                <x-input
+                    type="text"
+                    class="w-5/12"
+                    name="name"
+                    placeholder="Name"
+                />
+                <x-input
+                    type="text"
+                    class="w-5/12"
+                    name="Surname"
+                    placeholder="Surname"
+                />
             </div>
-        </div>
-        <button class="mx-auto bg-white min-w-20 p-2 font-semibold text-lg capitalize block">save profile</button>
-          <button class="w-full p-4 bg-red-400 text-lg text-white" form="changePassword" >Click here to change your password</button>
-      </form>
-   </section>
+
+            <div class="flex space-x-4">
+                <x-input
+                    type="email"
+                    class="w-5/12"
+                    name="email"
+                    placeholder="Email"
+                />
+                <x-input
+                    type="number"
+                    class="w-5/12"
+                    name="id_passport_no"
+                    placeholder="ID/Passwrod Number"
+                />
+            </div>
+
+            <div class="flex space-x-4">
+                <x-input
+                    type="phone"
+                    class="w-5/12"
+                    name="phone"
+                    placeholder="Phone number"
+                />
+                <x-input
+                    type="date"
+                    class="w-5/12"
+                    name="dob"
+                    placeholder="date of birth"
+                />
+            </div>
+
+            <h1 class="text-lg text-white">Address</h1>
+            <div class="flex space-x-4">
+                <x-input
+                    class="w-5/12"
+                    name="province"
+                    placeholder="Province"
+                />
+                <x-input class="w-5/12" name="city" placeholder="City" />
+            </div>
+            <div class="flex space-x-4">
+                <x-input
+                    type="text"
+                    class="w-5/12"
+                    name="suburb"
+                    placeholder="Suburb"
+                />
+                <x-input
+                    type="text"
+                    class="w-5/12"
+                    name="street"
+                    placeholder="Street"
+                />
+            </div>
+            <div class="flex space-x-4">
+                <x-input
+                    type="number"
+                    class="w-5/12"
+                    name="unit_no"
+                    placeholder="Unit number"
+                />
+                <x-input
+                    type="number"
+                    class="w-5/12"
+                    placeholder="Postal code"
+                    name="postal_code"
+                />
+            </div>
+            <button class="text-lg text-white min-w-40 p-2 gradient3">Update</button>
+        </form>
+        <button
+            class="w-full mt-20 p-4 bg-red-500 text-lg text-white"
+            form="changePassword"
+        >
+            Click here to change your password
+        </button>
+         </div>
+    </section>
 </x-app-layout>

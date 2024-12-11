@@ -31,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //defining gate
         Gate::define("is-admin", function($user){return $this->user_has_role($user, "Admin");});
-        Gate::define("is-user", function($user){return $this->user_has_role($user, "User");});
+        Gate::define("is-seller", function($user){return $this->user_has_role($user, "Seller");});
+        Gate::define("is-buyer", function($user){return $this->user_has_role($user, "Buyer");});
     
     }
 }

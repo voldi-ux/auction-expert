@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
 
         // define the different 
         Role::create(["name"=> "Admin"]);
-        Role::create(["name"=> "Guest"]);
-        Role::create(["name"=> "User"]);
+        Role::create(["name"=> "Seller"]);
+        Role::create(["name"=> "Buyer"]);
 
         // User::factory(10)->create();
 
@@ -44,10 +44,13 @@ class DatabaseSeeder extends Seeder
         $data = ['name'=> "Admin", "email"=> "admin@expert.co.za", "password" => "123456789"];
         $user =  User::create($data);
         $user->roles()->attach(1);
-        $user->roles()->attach(2);
         
         $user = User::create(['name'=> "voldi", "email"=> "voldimuyumba57@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(3);
+        $user->roles()->attach(2); // selller
+        
+        $user = User::create(['name'=> "john", "email"=> "johnmuyumba57@gmail.com", "password" => "123456789"]);
+        $user->roles()->attach(3); // buyer
+
 
         $user = User::create(['name'=> "user1", "email"=> "user1@gmail.com", "password" => "123456789"]);
         $user->roles()->attach(3);

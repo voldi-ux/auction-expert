@@ -27,4 +27,8 @@ class Car extends Model
   public function auction() : HasOne {
     return $this->hasOne(Auction::class);
   }
+
+  public function files() : HasMany {
+    return $this->hasMany(VehicleFile::class);
+  }
 }

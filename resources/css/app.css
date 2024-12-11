@@ -2,14 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer utilities {
     .myBg {
-        background-image:  linear-gradient(to bottom right, #29292E, #000000);
+        background-image: linear-gradient(to bottom right, #29292e, #000000);
     }
 
     .gradient2 {
-        background-image:  linear-gradient(to bottom right, #111117, #1C1C20);
+        background-image: linear-gradient(to bottom right, #111117, #1c1c20);
     }
+    .gradient3 {
+        background-image: linear-gradient(to bottom right, #794AFF, #794AFF);
+    }
+
+    .gradient4 {
+        background-image: linear-gradient(to bottom right, #19B762, #0BB571);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Car;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('vehicle_files', function (Blueprint $table) {
             $table->id();
+            $table->foreignId(Car::class);
             $table->string("name");
-            $table->string("surname");
-            $table->string("email");
-            $table->string("identity");
-            $table->date("dob");
+            $table->string("path");
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('vehicle_files');
     }
 };

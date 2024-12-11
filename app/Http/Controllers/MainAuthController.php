@@ -25,7 +25,7 @@ class MainAuthController
          //login was a success
          $request->session()->regenerate();
          
-         return redirect(route("analytics"));
+         return redirect()->back();
     }
 
     public function register(Request $request) {
@@ -37,13 +37,16 @@ class MainAuthController
 
 
        $user = User::create($validated);     
+       //should attach the Buyer's role here
+
+       $user->roles()->attach(3); // assign the client a buyer's role
        Auth::login($user);
-       
-       return redirect(route("analytics"));
+
+       return redirect("/");
     }
 
     public function  logout() {
          Auth::logout();
-        return redirect(route("login"));
+        return redirect()->back();
     }
 }

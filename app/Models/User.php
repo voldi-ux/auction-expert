@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
@@ -67,5 +68,11 @@ class User extends Authenticatable
     // the auctions that the user has craeted
     public function created_auctions() : HasMany {
          return $this->hasMany(Auction::class);
+    }
+
+
+    //get a user's identity
+    public function identity() : HasOne {
+        return $this->hasOne(Identity::class);
     }
 }

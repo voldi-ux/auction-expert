@@ -1,40 +1,95 @@
 <x-app-layout>
-     <x-filter-header />
+    <x-drawer drawer_id="listing-filter-drawer" title="Advanced Filtering" />
+    <header
+        class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat p-8"
+    >
+        <x-searchBar placeholder="Search make, model, etc..." />
+
+        <div class="flex items-center space-x-4">
+            <h1 class="text-lg text-white">Sort Order</h1>
+            <div class="space-x-4 flex-1">
+                <button
+                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
+                >
+                    Newly listed first
+                </button>
+                <button
+                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
+                >
+                    Oldest first
+                </button>
+            </div>
+            <span>
+                <button
+                    class="border-2 p-1 border-gray text-white"
+                    data-drawer-target="listing-filter-drawer"
+                    data-drawer-show="listing-filter-drawer"
+                    data-drawer-placement="right"
+                    aria-controls="listing-filter-drawer  "
+                >
+                    <i class="fas fa-sort-amount-down-alt"></i>
+                    <span> Filter </span>
+                </button>
+            </span>
+        </div>
+    </header>
     <section class="p-8">
-         <div class="container mx-auto rounded-lg gradient2 pb-8 min-h-64">
-        <table class="w-full border-separate border-spacing-y-8">
-        <thead class="text-white font-semibold capitalize text-lg">
-            <tr>
-            <th ></th>
-            <th >Name</th>
-            <th >Model</th>
-            <th >owner</th>
-            <th >Date Listed</th>
-            <th ></th>
-            <th ></th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @foreach($listed_cars as $car)
-            <tr class="text-white">
-            <td class=""> <img src="/storage/{{$car->images[0]->path}}" class="w-16 mx-auto"/></td>
-            <td class="">{{$car->make}}</td>
-            <td class="">{{$car->model}}</td>
-            <td class="">{{$car->user->name}}</td>
-            <td class="">{{$car->created_at}}</td>
-            <td class="" ><button @click="listView = {{$car->id}}" class="p-1 bg-white font-semibold text-black w-20 rounded-full">view</button></td>
-            <td class="" ><button @click="listing = {{$car->id}}" class="p-1 bg-white font-semibold text-black w-20 rounded-full">Process</button></td>
-                <x-processListedModal listing_id="{{$car->id}}" :car="$car"/>
-                <x-carViewModal list_view_id="{{$car->id}}" :images="$car->images"/> 
-            </tr>
-            @endforeach
-        </tbody>
-        </table>
-          <div class="flex justify-center">
-             <button class="p-1 bg-white font-semibold min-w-20 mx-2" >Previous</button>
-             <button class="p-1 bg-white font-semibold min-w-20 mx-2">Next</button>
-          </div>
-         </div>
+        <h1 class="text-3xl text-white mb-20">Listed Vehicles</h1>
+        <div class="flex flex-wrap gap-8">
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+            <x-card.listing />
+        </div>
+        <div class="flex mx-auto w-min my-12">
+            <!-- Previous Button -->
+            <a
+                href="#"
+                class="flex items-center justify-center px-4 h-10 me-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+                <svg
+                    class="w-3.5 h-3.5 me-2 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 5H1m0 0 4 4M1 5l4-4"
+                    />
+                </svg>
+                Previous
+            </a>
+            <a
+                href="#"
+                class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+                Next
+                <svg
+                    class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10"
+                >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                </svg>
+            </a>
+        </div>
     </section>
 </x-app-layout>

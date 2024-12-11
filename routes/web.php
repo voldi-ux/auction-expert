@@ -6,7 +6,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
-    return redirect(route("home"));
+    return view("home");
+})->name("home");
+
+
+Route::get("/auction/id", function() {
+      return view("auctionView");
 });
 
 Route::get('/home', function () {
@@ -14,7 +19,7 @@ Route::get('/home', function () {
         return redirect(route("analytics"));
     } 
     return view('welcome');
-})->name("home");
+});
 
 
 Route::middleware("auth")->group(function() {
@@ -65,7 +70,6 @@ Route::get("/app/settings", function() {
 
 
 //car/s
-
 Route::post("/app/decline-car/{car_id}", [CarController::class, "decline"]);
 
 
