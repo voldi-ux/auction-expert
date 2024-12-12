@@ -83,4 +83,22 @@ class CarController
     {
         //
     }
+
+     
+    //returns view of all listed vehicles by the current seller
+    public function listedCars() {
+     return view("main.listedAuctions");
+    }
+    
+ //returns view to list a vehicle
+  public   function list() {
+    return view("main.list");
+}
+
+
+public function auctions_entered() {
+     return view("main.auctionsEntered"); 
+}
+
+    
 }

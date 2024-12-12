@@ -27,7 +27,7 @@
             </div>
 
             <div class="space-x-4">
-                    @guest
+                     @guest
                        <a
                         class="text-lg hover:text-orange-500 transition-all"
                         href="/login"
@@ -39,6 +39,10 @@
                         >Register</a
                     >
                    @endguest
+
+                   @auth
+                     <x-authDropdown />
+                   @endauth
             </div>
 
             <div class="space-x-4">
@@ -179,7 +183,7 @@
                                 aria-label="Slide 1"
                                 data-carousel-slide-to="0"
                             >
-                                <img src="/storage/images/car2.png" />
+                                <img src="/storage/images/car1.png" />
                             </button>
                             <button
                                 type="button"
@@ -188,7 +192,7 @@
                                 aria-label="Slide 2"
                                 data-carousel-slide-to="1"
                             >
-                                <img src="/storage/images/car2.png" />
+                                <img src="/storage/images/car3.png" />
                             </button>
                             <button
                                 type="button"
@@ -206,7 +210,7 @@
                                 aria-label="Slide 4"
                                 data-carousel-slide-to="3"
                             >
-                                <img src="/storage/images/car2.png" />
+                                <img src="/storage/images/car4.png" />
                             </button>
                             <button
                                 type="button"
@@ -215,7 +219,7 @@
                                 aria-label="Slide 5"
                                 data-carousel-slide-to="4"
                             >
-                                <img src="/storage/images/car2.png" />
+                                <img src="/storage/images/car5.png" />
                             </button>
                         </div>
                         <!-- Slider controls -->

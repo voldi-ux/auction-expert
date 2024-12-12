@@ -1,3 +1,7 @@
+ @if (session('message'))
+        <x-toast :message="session('message')" />
+@endif
+
 <x-app-layout>
     <x-drawer drawer_id="sellers-filter-drawer" title="Filter Sellers">
         <h1>Filter sellers</h1>
@@ -6,11 +10,7 @@
     <x-modal modal_id="create-seller" title="Add New Seller">
         <div>
             <x-createSeller />
-            <button
-                class="p-2 w-40 text-center text-lg gradient3 text-white my-4"
-            >
-                Create Seller
-            </button>
+         
         </div>
         
     </x-modal>

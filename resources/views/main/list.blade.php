@@ -18,14 +18,14 @@
                 <x-input
                     type="text"
                     class="w-5/12"
-                    name="name"
-                    placeholder="Name"
+                    name="make"
+                    placeholder="make"
                 />
                 <x-input
                     type="text"
                     class="w-5/12"
                     name="model"
-                    placeholder="Surname"
+                    placeholder="Model"
                 />
             </div>
 

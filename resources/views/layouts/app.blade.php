@@ -62,7 +62,7 @@
                     <x-side-bar-link
                         icon="fas fa-list"
                         title="listing"
-                        :active="request()->is('app/listings')"
+                        :active="request()->is('admin/listings')"
                         routeName="listings"
                     />
                     @endcan
@@ -80,36 +80,36 @@
                     <x-side-bar-link
                         icon="fas fa-plus"
                         title="list"
-                        :active="request()->is('app/list')"
-                        routeName="list"
+                        :active="request()->is('seller/list')"
+                        routeName="list_car"
                     />
 
                    
                     <x-side-bar-link
                         icon="fas fa-plus"
                         title="listed"
-                        :active="request()->is('app/listed')"
+                        :active="request()->is('seller/listed')"
                         routeName="listed"
                     />
                     @endcan @can("is-admin")
                     <x-side-bar-link
                         icon="fas fa-shipping-fast"
                         title="Live Auctions"
-                        :active="request()->is('app/running-auctions')"
+                        :active="request()->is('admin/live-auctions')"
                         routeName="running"
                     />
                     <x-side-bar-link
                         icon="fas fa-hourglass-half"
                         title="scheduled"
-                        :active="request()->is('app/schedule')"
+                        :active="request()->is('admin/schedule')"
                         routeName="schedules"
                     />
 
                     <x-side-bar-link
                         icon="fas fa-users"
                         title="Manage Sellers"
-                        :active="request()->is('app/users')"
-                        routeName="users"
+                        :active="request()->is('admin/sellers')"
+                        routeName="all_sellers"
                     />
                     @endcan
                     <x-side-bar-link

@@ -59,35 +59,9 @@ class AuctionController
         return redirect(route("listings"));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Auction $auction)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Auction $auction)
-    {
-        //
+    public function scheduled_auctions() {
+        return view("main.scheduled");
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Auction $auction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Auction $auction)
-    {
-        //
-    }
+    
 }

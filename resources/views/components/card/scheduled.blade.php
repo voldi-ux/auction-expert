@@ -1,9 +1,16 @@
-
 <!-- to do
- if it is an admin and they are on the dashboard only then I should hide the banner and display the manage button at the bottom otherwise display the starts soon banner 
+ if it is an admin and they are on the is_dashboard only then I should hide the banner and display the manage button at the bottom otherwise display the starts soon banner 
 
 -->
 
+@props(["is_dashboard" => false])
+
+
+
+@if($is_dashboard == true) 
+<x-modal modal_id="listed-scheduled-view" title="Scheduled Auction Details" >
+</x-modal>
+@endif
 
 <div class="w-80 min-h-90 gradient2 rounded-lg space-y-4 pb-8">
     <div class="bg-white rounded-lg">
@@ -49,4 +56,14 @@
         <h1 class="text-white text-sm">Scheduled for</h1>
         <h1 class="text-xs font-bold text-orange">Mon, 08, Dec 10:00am</h1>
     </div>
+
+    @if($is_dashboard)
+    <button
+        data-modal-target="listed-scheduled-view"
+        data-modal-toggle="listed-scheduled-view"
+        class="gradient3 text-center p-2 text-lg w-full text-white font-bold"
+    >
+        Manage
+    </button>
+    @endif
 </div>

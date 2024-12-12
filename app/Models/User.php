@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Cashier\Billable;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable
 {
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+         "phone"
     ];
 
     /**
@@ -50,6 +52,18 @@ class User extends Authenticatable
         ];
     }
 
+
+    //utils functions
+    public function hasRole(String $role)   {
+        $roles = $this->roles;
+        foreach($roles as  $_role) {
+            if($_role->name == $role ) return true;
+        }
+        return false;
+    }
+
+
+    // Entity relationships
     
     public function cars() : HasMany {
         return $this->hasMany(Car::class);
@@ -75,4 +89,14 @@ class User extends Authenticatable
     public function identity() : HasOne {
         return $this->hasOne(Identity::class);
     }
+
+    public function profile() : HasOne {
+        return $this->hasOne(Profile::class);
+    }
+    public function address() : HasOne {
+        return $this->hasOne(Address::class);
+    }
+
+
+    
 }

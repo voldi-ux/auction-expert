@@ -19,9 +19,22 @@ return new class extends Migration
             $table->string("model");
             $table->year("year_made");
             $table->string("condition");
-            $table->string("milage");
+            $table->string("mileage");
             $table->string("body_type");
+            $table->string("colour");
+            $table->string("description");
+            $table->string("drive");
+            $table->integer("code");
+            $table->integer("number_of_seats");
+            $table->integer("number_of_doors");
+            $table->string("fuel_type");
+            $table->integer("tank_capacity");
+            $table->integer("engine_capacity");
+            $table->integer("gears");
+            $table->integer("cylinder_layout");
+            $table->integer("reserved_price");
             $table->string("status")->default("");
+            
             $table->timestamps();
         });
     }

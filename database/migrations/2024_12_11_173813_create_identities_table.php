@@ -14,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('identities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(User::class);
-            $table->string("type");
+            $table->foreignIdFor(User::class);
             $table->string("path");
             $table->timestamps();
         });
