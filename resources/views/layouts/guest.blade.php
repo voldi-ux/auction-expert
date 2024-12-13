@@ -22,14 +22,14 @@
             </div>
 
             <div class="space-x-4">
-               <a href="/login">Login</a>
-               <a href="/register">Register</a>
+               <a class="text-lg hover:text-orange transition-all" href="/login">Login</a>
+               <a class="text-lg hover:text-orange transition-all" href="/register">Register</a>
             </div>
 
             <div class="space-x-4 ">
-               <a href="/">Home</a>
-               <a href="">About</a>
-               <a href="">Contact</a>
+               <a class="text-lg hover:text-orange transition-all" href="/">Home</a>
+               <a class="text-lg hover:text-orange transition-all" href="">About</a>
+               <a class="text-lg hover:text-orange transition-all" href="">Contact</a>
             </div>
         </nav>
         </div>

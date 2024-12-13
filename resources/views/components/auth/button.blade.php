@@ -1,0 +1,1 @@
+  <button class="p-1 bg-white text-black text-lg w-40  self-center my-4" type="submit"> {{$slot}} </button>

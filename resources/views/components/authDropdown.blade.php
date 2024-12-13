@@ -1,8 +1,8 @@
 <button
     data-dropdown-toggle="auth_dropdown"
-    class="transition-all hover:text-yellow-600"
+    class="transition-all hover:text-yellow-600 p-2"
 >
-    <i class="fas fa-user"></i>
+    <i class="fas fa-user text-xl"></i>
 </button>
 <div
     id="auth_dropdown"

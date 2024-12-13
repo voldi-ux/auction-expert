@@ -15,48 +15,69 @@ class AuctionController
      */
     public function get_all_running_auctions()
     {
-        $auctions = Auction::with(["car","bids"])->where("status", "active")->get();
-        return view("main.runningAuctions", ['auctions' => $auctions]);
+        $auctions = Auction::with(["car","bids"])->where("status", "active")->paginate(3);
+        return view("main.runningAuctions", ['live_auctions' => $auctions]);
     }
 
     public function get_user_auctions() {
          $user = Auth::user();
          return view("main.auctionsEntered", ["auctions" => $user->auctions]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function home()
     {
-        //
+    $auctions = Auction::with(["car"])->where("status", "active")->paginate(3);
+        return view("home", ['live_auctions' => $auctions]);
     }
+
+    
+    public function auction_view(Auction $auction, Request $request)
+    {   
+        //should return live auctions that are similar to the current one being viewd
+        $similar = Auction::with(["car"])->where("status", "active")->limit(8)->get();
+    
+        return view("auctionView", ["auction" => $auction, "similar"=> $similar]);
+    }
+
+
+
 
     /**
      * create an auction.
      */
     public function store(Car $car, Request $request)
     {   
-        
-        //make sure that only admins can create auctions 
-        //Should later use policies
-        if(!Gate::allows("is-admin")) return abort(403);
-       
         $validated = $request->validate([
             "bid_increment" => ["required"],
+            "start_bid_amount" => ["required"],
+            "end_date" => ["required"],
+            "start_date" => ["required"],
             "when"        => ["required"]
         ]);
     
-        if($validated["when"] != "now") {
-          dd("auctions can only start immidiately, for now");
-        };
+        //to do
+        /**
+         * Make sure start and end date are not in the past
+         * Make sure the end date is ahead of the starting date
+         * 
+         * if now is set then then the start auction should start immidiately
+         */
         
-      
-        //user_id is the id of the person 
-        $car->auction()->create(array_merge($validated, ["user_id" => Auth::user()->id,"status" => "active"]));
-        $car->status = "active";
+        $status = $validated["when"] == "now" ? "active" : "scheduled";
+
+        $car->auction()->create(array_merge($validated, ["creator_id" => Auth::user()->id,"status" => $status]));
+        $car->status =  $status;
         $car->save();
 
-        return redirect(route("listings"));
+        return redirect(route("listings"))->with(["message" => "listed successfully"]);
+    }
+
+
+    public function decline(Car $car , Request $request) {
+
+        $car->status = "declined";
+        $car->save(); // commit the car back to the database
+       return redirect(route("listings"))->with(["message" => "declined successfully"]);
     }
 
 

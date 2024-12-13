@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VehicleRequest;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CarController
     public function index()
     {
         //
-         $listed_cars = Car::with(["images", "payment"])->where("status","")->get();
+         $listed_cars = Car::with(["images", "docs"])->where("status","pending")->paginate(1);
         return view("main.listings", ["listed_cars"=> $listed_cars]);
     }
 
@@ -33,25 +34,16 @@ class CarController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VehicleRequest $request)
     {
-        $validated  = $request->validate([
-           "make" => ["required"],
-           "model" => ["required"],
-           "year_made" => ["required"],
-           "condition" => ["required"],
-           "milage"    => ["required"],
-           "body_type" => ["required"],
-        ]);
-
+        $validated  = $request->validated();
         //
         $files  = $request->file("images");
-        $paths = [];
+        $docs  = $request->file("docs");
 
-        if(count($files)  < 2) {
-            return back()->withErrors(["images" => "at least 2 images of the car must be selected"]);
-        }
-    
+        $paths = [];
+        $docs_paths = [];
+
         $car = new Car($validated);
 
         $user = User::find(Auth::user()->id);
@@ -59,13 +51,21 @@ class CarController
         $user->cars()->save($car);
 
         foreach($files as $file) {
-            $p = $file->store("images" ,"public");
+            $p = $file->store("vehicle-images" ,"public");
             array_push($paths, ["path" => $p]);
         }
 
-        $car->images()->createMany($paths);
+        foreach($docs as $file) {
+            $p = $file->store("vehicle-docs" ,"public");
+            array_push($docs_paths, ["path" => $p]);
+        }
+
+
         
-        return redirect(route("list"))->with(["message" => "Vehicle uploaded successfully"]);
+        $car->images()->createMany($paths);
+        $car->docs()->createMany($docs_paths);
+        
+        return redirect(route("list_car"))->with(["message" => "Vehicle uploaded successfully"]);
     }
     
 
@@ -86,8 +86,9 @@ class CarController
 
      
     //returns view of all listed vehicles by the current seller
-    public function listedCars() {
-     return view("main.listedAuctions");
+    public function listed_cars() {
+        $cars = Car::paginate(4);
+     return view("main.listedAuctions", ["cars"=> $cars]);
     }
     
  //returns view to list a vehicle

@@ -5,7 +5,7 @@
         @endif
 
         <form
-            action="/store-car"
+            action="{{ route('post_car') }}"
             method="post"
             class="w-full min-h-long p-4 gradient2 space-y-12 rounded-lg"
             enctype="multipart/form-data"
@@ -16,12 +16,14 @@
             </h1>
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="make"
                     placeholder="make"
                 />
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="model"
@@ -31,12 +33,14 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="body_type"
                     placeholder="Body Type"
                 />
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="year"
@@ -46,12 +50,14 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="mileage"
                     placeholder="Mileage"
                 />
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="code"
@@ -60,29 +66,33 @@
             </div>
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="condition"
                     placeholder="Car condition"
                 />
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
-                    name="color"
-                    placeholder="Color"
+                    name="colour"
+                    placeholder="colour"
                 />
             </div>
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
-                    name="seats"
+                    name="number_of_seats"
                     placeholder="Number of seats"
                 />
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
-                    name="doors"
+                    name="number_of_doors"
                     placeholder="Number of doors"
                 />
             </div>
@@ -93,12 +103,14 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="fuel_type"
                     placeholder="Fuel Type"
                 />
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="tank_capacity"
@@ -108,12 +120,14 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="fuel_consumption"
                     placeholder="Fuel consumption"
                 />
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="engine_capacity"
@@ -123,12 +137,14 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="cylinder_layout"
                     placeholder="Cylinder Layout"
                 />
                 <x-input
+                    value="1"
                     type="number"
                     class="w-5/12"
                     name="gears"
@@ -138,6 +154,7 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
+                    value="1"
                     type="text"
                     class="w-5/12"
                     name="drive"
@@ -145,10 +162,11 @@
                 />
 
                 <x-input
+                    value="1"
                     type="text"
-                    class="w-5/12 invisible"
-                    name="drive"
-                    placeholder="Car drive"
+                    class="w-5/12 "
+                    name="transmission"
+                    placeholder="transmission"
                 />
             </div>
 
@@ -158,6 +176,8 @@
 
             <div class="px-20">
                 <x-input
+                    name="reserved_price"
+                    value="1"
                     type="number"
                     class="w-full block"
                     placeholder="Reserved price"
@@ -168,7 +188,9 @@
                 Car Description
             </h1>
             <textarea
-                class="w-full h-40 bg-transparent"
+                 name="description"
+                value="description"
+                class="w-full h-40 bg-transparent text-white"
                 placeholder="Additional car Description"
             >
             </textarea>
@@ -196,7 +218,7 @@
             >
                 <input
                     type="file"
-                    name="images[]"
+                    name="docs[]"
                     multiple
                     accept="image/*"
                     placeholder="click here to add documents drop them here"

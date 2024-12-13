@@ -1,15 +1,15 @@
 @props(["car"])
 
 <div class="space-y-8">
-    <form method="post" action="/app/decline-car/car">@csrf</form>
+    <form id="decline_listing" method="post" action="{{route('decline_listing', $car->id)}}">@csrf</form>
     <div class="flex items-center justify-center space-x-3">
         <img src="/storage/images/car2.png" class="w-14" />
-        <h1 class="text-white text-xl">Toyota</h1>
+        <h1 class="text-white text-xl">{{$car->make }}  {{$car->model }}</h1>
     </div>
     <form
-        id=""
+        id="approve_listing"
         class="space-y-8 flex flex w-full"
-        action="/app/create-auction/car"
+        action="{{route('approve_listing', $car->id)}}"
         method="post"
     >
         <div class="w-1/2 space-y-8 p-2">
@@ -60,10 +60,10 @@
     </form>
 
     <div class="flex space-x-4">
-        <button form="" class="md:w-1/2 bg-green-600 p-2 text-white ">
+        <button form="approve_listing" class="md:w-1/2 bg-green-600 p-2 text-white ">
             Process
         </button>
-        <button type="submit" form="" class="md:w-1/2 bg-red-600 font-semibold p-2 text-white ">
+        <button  type="submit" form="decline_listing" class="md:w-1/2 bg-red-600 font-semibold p-2 text-white ">
             Decline Listing
         </button>
     </div>

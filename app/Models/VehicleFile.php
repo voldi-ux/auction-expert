@@ -9,6 +9,10 @@ class VehicleFile extends Model
 {
     //
 
+    protected $fillable = [
+        "path"
+    ];
+
     public function car() : BelongsTo {
         return $this->belongsTo(Car::class);
     }

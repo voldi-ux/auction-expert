@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Listeners\SendEmailToNewSeller;
+use App\Notifications\NewSeller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define("is-admin", function($user){return  $user->hasRole("Admin");});
         Gate::define("is-seller", function($user){return  $user->hasRole("Seller");});
         Gate::define("is-buyer", function($user){return  $user->hasRole("Buyer");});
+
+        Event::listen(NewSeller::class, SendEmailToNewSeller::class);
     
     }
 }

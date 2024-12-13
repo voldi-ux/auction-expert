@@ -16,11 +16,12 @@ return new class extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
             $table->foreignIdFor(Car::class);
+            $table->foreignId("creator_id");
             $table->integer("bid_increment");
-            $table->string("start_date")->default("");
-            $table->string("end_date")->default("");
+            $table->integer("start_bid_amount");
+            $table->string("start_date");
+            $table->string("end_date");
             $table->string("status");
             $table->timestamps();
         });

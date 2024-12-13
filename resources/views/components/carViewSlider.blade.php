@@ -1,26 +1,42 @@
-@props(["images"=> []]) @php $idx = 0; @endphp
+@props(["car"]) 
+
+@php $no_imgs = count($car->images); @endphp
 
 <div
-    id="animation-carousel2"
+    id="animation-carousel"
     class="relative w-full h-full"
-    data-carousel="slide"
+    data-carousel="static"
 >
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        @foreach($images as $img)
+        @foreach($car->images as $img)
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-             <div class="h-long w-full  flex justify-center">
+            <div class="h-long w-full flex justify-center">
                 <img
-                src="/storage/{{$img->path}}"
-                class="absolute block h-full mx-auto "
-                alt="..."
-            />
-             </div>
+                    src="/storage/{{$img->path}}"
+                    class="absolute block h-full mx-auto"
+                    alt="..."
+                />
+            </div>
         </div>
         @endforeach
     </div>
     <!-- Slider indicators -->
-   
+    <div
+        class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2"
+    >
+        @for ($i = 0; $i < $no_imgs; $i++)
+        <button
+            type="button"
+            class="h-20 w-20"
+            aria-current="true"
+            aria-label="Slide 1"
+            data-carousel-slide-to="{{ $i }}"
+        >
+            <img src="/storage/{{$car->images[$i]->path}}" />
+        </button>
+        @endfor
+    </div>
     <!-- Slider controls -->
     <button
         type="button"

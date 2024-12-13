@@ -80,6 +80,7 @@ class User extends Authenticatable
     }
 
     // the auctions that the user has craeted
+    // the foreign key is creator_id, thus must be updated
     public function created_auctions() : HasMany {
          return $this->hasMany(Auction::class);
     }
@@ -96,7 +97,4 @@ class User extends Authenticatable
     public function address() : HasOne {
         return $this->hasOne(Address::class);
     }
-
-
-    
 }

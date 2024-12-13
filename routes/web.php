@@ -1,21 +1,26 @@
 <?php
 
-use App\Http\Controllers\AnalyticController;
+use App\Events\newSellerAdded;
+use App\Events\Testsend;
+use App\Http\Middleware\HasRole;
+use App\Notifications\NewSeller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\AuctionController;
-use App\Http\Middleware\HasRole;
+use App\Http\Controllers\AnalyticController;
+use App\Models\Auction;
+use Illuminate\Support\Facades\Notification;
+
+
+
 
 //geenral
-Route::get("/", function () {
-    return view("home");
-})->name("home");
+Route::get("/", [AuctionController::class, "home"])->name("home");
 
 
-Route::get("/auction/{id}", function() {
-      return view("auctionView");
-});
+Route::get("/auction/{auction}", [AuctionController::class, "auction_view"])->name("auction_view");
 
 
 //this too should be refactored later on
@@ -49,10 +54,11 @@ Route::middleware(["auth","hasRole".":Buyer"])->prefix("buyer", function() {
 
 //seller actions
 Route::middleware(["auth","hasRole".":Seller"])->prefix("seller")->group(function() {
-   Route::get("/listed", [CarController::class, "listedCars"])->name("listed");
+   Route::get("/listed", [CarController::class, "listed_cars"])->name("listed");
    Route::get("/analytics", [AnalyticController::class, "seller_analytics"])->name("seller_analytics")->middleware( HasRole::class);
    Route::get("/list", [CarController::class, "list"])->name("list_car");
-   // Route::post("store-car", [CarController::class, "store"]);
+
+   Route::post("list", [CarController::class, "store"])->name("post_car");
 });
 
 
@@ -64,9 +70,8 @@ Route::middleware(["auth","hasRole".":Admin"])->prefix("admin")->group(function(
 
 
     //auctions
-    Route::post("/create-auction/{car}", [AuctionController::class, "store"]);
-    Route::post("/decline-auction/{car}", [AuctionController::class, "decline"]);
-
+    Route::post("/create-auction/{car}", [AuctionController::class, "store"])->name("approve_listing");
+    Route::post("/decline-auction/{car}", [AuctionController::class, "decline"])->name("decline_listing");
     //cars
     Route::get("/listings", [CarController::class, "index"])->name("listings");
 

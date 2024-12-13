@@ -51,8 +51,8 @@
 
     <h1 class="text-lg text-white">Address</h1>
     <div class="flex space-x-4">
-        <x-input  value="Gauteng" class="w-5/12" name="province" placeholder="Province" />
-        <x-input value="JHB" class="w-5/12" name="city" placeholder="City" />
+        <x-input  type="text" value="Gauteng" class="w-5/12" name="province" placeholder="Province" />
+        <x-input value="JHB" type="text" class="w-5/12" name="city" placeholder="City" />
     </div>
     <div class="flex space-x-4">
         <x-input

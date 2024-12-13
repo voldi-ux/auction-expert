@@ -1,4 +1,4 @@
-@props(["data" => null])
+@props(["car"])
 
 <section class="flex-1">
     @if (session('message'))
@@ -17,27 +17,31 @@
         </h1>
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->make}}"
                 type="text"
                 class="w-5/12"
-                name="name"
-                placeholder="Name"
+                name="make"
+                placeholder="make"
             />
             <x-input
+                value="{{$car->model}}"
                 type="text"
                 class="w-5/12"
                 name="model"
-                placeholder="Surname"
+                placeholder="Model"
             />
         </div>
 
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->body_type}}"
                 type="text"
                 class="w-5/12"
                 name="body_type"
                 placeholder="Body Type"
             />
             <x-input
+                value="{{$car->year}}"
                 type="number"
                 class="w-5/12"
                 name="year"
@@ -47,12 +51,14 @@
 
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->mileage}}"
                 type="number"
                 class="w-5/12"
                 name="mileage"
                 placeholder="Mileage"
             />
             <x-input
+                value="{{$car->code}}"
                 type="number"
                 class="w-5/12"
                 name="code"
@@ -61,29 +67,33 @@
         </div>
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->condition}}"
                 type="text"
                 class="w-5/12"
                 name="condition"
                 placeholder="Car condition"
             />
             <x-input
+                value="{{$car->colour}}"
                 type="text"
                 class="w-5/12"
-                name="color"
-                placeholder="Color"
+                name="colour"
+                placeholder="colour"
             />
         </div>
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->number_of_seats}}"
                 type="number"
                 class="w-5/12"
-                name="seats"
+                name="number_of_seats"
                 placeholder="Number of seats"
             />
             <x-input
+                value="{{$car->number_of_doors}}"
                 type="number"
                 class="w-5/12"
-                name="doors"
+                name="number_of_doors"
                 placeholder="Number of doors"
             />
         </div>
@@ -94,12 +104,14 @@
 
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->fuel_type}}"
                 type="text"
                 class="w-5/12"
                 name="fuel_type"
                 placeholder="Fuel Type"
             />
             <x-input
+                value="{{$car->tank_capacity}}"
                 type="number"
                 class="w-5/12"
                 name="tank_capacity"
@@ -109,12 +121,14 @@
 
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->fuel_consumption}}"
                 type="text"
                 class="w-5/12"
                 name="fuel_consumption"
                 placeholder="Fuel consumption"
             />
             <x-input
+                value="{{$car->engine_capacity}}"
                 type="number"
                 class="w-5/12"
                 name="engine_capacity"
@@ -124,12 +138,14 @@
 
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->cylinder_layout}}"
                 type="number"
                 class="w-5/12"
                 name="cylinder_layout"
                 placeholder="Cylinder Layout"
             />
             <x-input
+                value="{{$car->gears}}"
                 type="number"
                 class="w-5/12"
                 name="gears"
@@ -139,6 +155,7 @@
 
         <div class="flex space-x-4 justify-center">
             <x-input
+                value="{{$car->drive}}"
                 type="text"
                 class="w-5/12"
                 name="drive"
@@ -146,10 +163,11 @@
             />
 
             <x-input
+                value="{{$car->transmission}}"
                 type="text"
-                class="w-5/12 invisible"
-                name="drive"
-                placeholder="Car drive"
+                class="w-5/12"
+                name="transmission"
+                placeholder="transmission"
             />
         </div>
 
@@ -159,6 +177,8 @@
 
         <div class="px-20">
             <x-input
+                name="reserved_price"
+                value="{{$car->reserved_price}}"
                 type="number"
                 class="w-full block"
                 placeholder="Reserved price"
@@ -169,21 +189,25 @@
             Car Description
         </h1>
         <textarea
-            class="w-full h-40 bg-transparent"
+            name="description"
+            value="description"
+            class="w-full h-40 bg-transparent text-white"
             placeholder="Additional car Description"
         >
-        </textarea>
 
-     
+             {{$car->description}}
+            </textarea
+        >
+
         <h1 class="text-xl font-semibold text-white text-center">
             Uploaded Vehicle Documents
         </h1>
         <div
             class="space-y-4 text-blue-600 h-40 overflow-y-auto border-2 border-dashed border-neutral-600 flex flex-col justify-center items-center"
         >
-            <a href="/storage/images/car1.png" target="_blank">id.pdf</a>
-            <a href="/storage/images/car1.png" target="_blank">license.pdf</a>
-            <a href="/storage/images/car1.png" target="_blank">license.pdf</a>
+            @foreach($car->docs as $doc)
+             <a href="/storage/{{$doc->path}}" target="_blank">{{$doc->path}}</a>
+            @endforeach
         </div>
 
         <div class="flex justify-center space-x-4">

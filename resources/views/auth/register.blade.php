@@ -31,12 +31,16 @@
                     type="password"
                     placeholder="Confirm Password"
                 />
-                <button
-                    class="pd-4 bg-white text-black text-lg w-20 font-semibold self-center my-4"
-                    type="submit"
-                >
-                    Register
-                </button>
+                   <div class="space-x-2 flex">
+                  <h1 class="text-gray">
+                     Alaready have an account ? 
+                  </h1>
+                  <a href="{{route('login')}}" class="text-white text-sm">Sign In</a>
+        
+               </div>
+                <x-auth.button > 
+                   <h1>  Register</h1>
+                </x-auth.button>
             </form>
         </div>
         <div class="flex-1 flex justify-center">

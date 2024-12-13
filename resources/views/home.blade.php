@@ -1,3 +1,8 @@
+@php
+ $msg = "There’s currently no live auction. Please check back later.";
+@endphp
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -80,12 +85,12 @@
                 <div class="space-x-4">
                    @guest
                        <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href="/login"
                         >Login</a
                     >
                     <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href="/register"
                         >Register</a
                     >
@@ -98,22 +103,22 @@
 
                 <div class="space-x-4">
                     <a
-                        class=" text-lg hover:text-orange-500 transition-all"
+                        class=" text-lg hover:text-orange transition-all"
                         href="/"
                         >Home</a
                     >
                     <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href="/"
                         >Scheduled Auctions</a
                     >
                     <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href=""
                         >About</a
                     >
                     <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href=""
                         >Contact</a
                     >
@@ -183,64 +188,14 @@
                 </button>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-8 justify-center">
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
-                <x-card.live />
+            <div class="flex flex-wrap gap-8 justify-center"> 
+          @forelse ($live_auctions as $auction)
+            <x-card.live  :auction="$auction"/>
+            @empty
+            <x-nothingToShow :msg="$msg" />
+            @endforelse
             </div>
-            <!-- pagination  -->
-            <div class="flex mx-auto w-min my-12">
-                <!-- Previous Button -->
-                <a
-                    href="#"
-                    class="flex items-center justify-center px-4 h-10 me-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                    <svg
-                        class="w-3.5 h-3.5 me-2 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                    >
-                        <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 5H1m0 0 4 4M1 5l4-4"
-                        />
-                    </svg>
-                    Previous
-                </a>
-                <a
-                    href="#"
-                    class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                    Next
-                    <svg
-                        class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                    >
-                        <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                    </svg>
-                </a>
-            </div>
+           
         </section>
 
         <section class="container mx-auto mb-20">

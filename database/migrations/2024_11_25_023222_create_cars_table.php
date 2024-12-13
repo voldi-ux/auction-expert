@@ -17,12 +17,14 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->string("make");
             $table->string("model");
-            $table->year("year_made");
+            $table->year("year");
             $table->string("condition");
             $table->string("mileage");
             $table->string("body_type");
             $table->string("colour");
             $table->string("description");
+            $table->string("transmission");
+            $table->string("fuel_consumption");
             $table->string("drive");
             $table->integer("code");
             $table->integer("number_of_seats");
@@ -33,7 +35,7 @@ return new class extends Migration
             $table->integer("gears");
             $table->integer("cylinder_layout");
             $table->integer("reserved_price");
-            $table->string("status")->default("");
+            $table->string("status")->default("pending");
             
             $table->timestamps();
         });

@@ -14,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('vehicle_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Car::class);
-            $table->string("name");
+            $table->foreignIdFor(Car::class);
             $table->string("path");
             $table->timestamps();
         });
