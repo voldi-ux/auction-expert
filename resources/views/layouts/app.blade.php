@@ -86,7 +86,7 @@
 
                    
                     <x-side-bar-link
-                        icon="fas fa-plus"
+                        icon="fas fa-list"
                         title="listed"
                         :active="request()->is('seller/listed')"
                         routeName="listed"
@@ -187,10 +187,11 @@
                                     >
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
+                                
+                                    <button
+                                         form="logOutForm"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        >Sign out</a
+                                        >Sign out</button
                                     >
                                 </li>
                             </ul>

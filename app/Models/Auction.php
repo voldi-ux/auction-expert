@@ -33,6 +33,10 @@ class Auction extends Model
     return $this->belongsTo(Car::class);
   }
 
+  private function formatTime($time) {
+    $time = Carbon::parse($time);
+    return $time->format('D, M j, Y, g:ia');
+  }
   //  utils 
   public function remainingTimeFormated() {
         $start = Carbon::now(); $end = Carbon::parse($this->end_date); 
@@ -45,7 +49,10 @@ class Auction extends Model
 
 
   public function formatedEndtime() {
-       $end = Carbon::parse($this->end_date); 
-      return $end->format('D, M j, Y, g:ia');
+      return $this->formatTime($this->end_date);
+  }
+
+  public function formatScheduledDate() {
+    return $this->formatTime($this->start_date);
   }
 }

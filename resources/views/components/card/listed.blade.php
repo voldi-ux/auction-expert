@@ -27,11 +27,11 @@ default:
    
 </x-modal>
 
-<div class="w-80 min-h-90 gradient2 rounded-lg space-y-4 pb-8 transition-all hover:scale-110">
+<div class="w-80 min-h-90 gradient2 p-2 rounded-lg space-y-4 pb-8 transition-all hover:scale-105">
                 <div class="bg-white rounded-lg">
                     <!-- make the image clickable to go the next view of the auction -->
                         <div class="h-40 block p-2">
-                            <img src="/storage/images/car1.png" />
+                            <img src="/storage/{{$car->images[0]->path}}" class="block h-full mx-auto" />
                         </div>
     
                 </div>
@@ -68,7 +68,7 @@ default:
                     </div>
 
                     <div class="flex items-center space-x-1">
-                        <div class="w-2 h-2 rounded-full inline-block bg-green-600 animate-pulse {{$style}} "></div>
+                        <div class="w-2 h-2 rounded-full inline-block animate-pulse {{$style}} "></div>
                         <h1 class="text-gray">
                              {{$car->status}}
                         </h1>

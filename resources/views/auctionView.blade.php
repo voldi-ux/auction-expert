@@ -34,12 +34,12 @@
             <div class="space-x-4">
                      @guest
                        <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href="/login"
                         >Login</a
                     >
                     <a
-                        class="text-lg hover:text-orange-500 transition-all"
+                        class="text-lg hover:text-orange transition-all"
                         href="/register"
                         >Register</a
                     >
@@ -51,10 +51,10 @@
             </div>
 
             <div class="space-x-4">
-                <a class="text-lg hover:text-orange-500 transition-all" href=""
+                <a class="text-lg hover:text-orange transition-all" href=""
                     >About</a
                 >
-                <a class="text-lg hover:text-orange-500 transition-all" href=""
+                <a class="text-lg hover:text-orange transition-all" href=""
                     >Contact</a
                 >
             </div>
@@ -126,10 +126,16 @@
                     </div>
 
                     <div class="p-2 gradient3 text-center rounded-lg">
+                        @if($auction->status == "scheduled")
+                          <h1 class="text-3xl text-white font-semibold py-4 ">
+                            Starts Soon
+                          </h1>
+                        @else
                         <h1 class="text-lg text-white">Top Bid</h1>
-                        <h1 class="text-3xl text-white font-bold">
+                        <h1 class="text-3xl text-white font-bold ">
                             R 5000 000
                         </h1>
+                        @endif
                     </div>
 
                     <div class="flex justify-between px-2 text-white">
@@ -169,7 +175,13 @@
                     <button
                         class="p-2 flex justify-center items-center w-full gradient4 rounded-lg text-lg text-white"
                     >
-                        Login To Make Bids
+                        @guest
+                           Login To Make Bids
+                        @endguest
+
+                        @auth 
+                          Start biding
+                        @endauth
                     </button>
 
                     <x-accordion />
@@ -286,7 +298,7 @@
                 <h1 class="text-3xl text-white font-semibold">Similar Cars</h1>
             </div>
 
-            <div class="flex flex-wrap gap-8 justify-center">
+            <div class="flex flex-wrap gap-8 ">
               @forelse ($similar as $auction)
             <x-card.live  :auction="$auction"/>
             @empty

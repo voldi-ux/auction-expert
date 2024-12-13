@@ -49,12 +49,11 @@
         </div>
         <div class="flex-1 p-2 space-y-8">
             <fieldset class="space-x-2 flex">
-                <x-input class="flex-1" type="date" name="start_date" />
-                <label class="text-white"" for="start_date">Start date</label>
+                <x-input class="flex-1" type="date" name="start_date" placeholder="Start date" />
+                <label class="text-white"" for="start_date"></label>
             </fieldset>
             <fieldset class="space-x-2 flex">
-                <x-input class="flex-1" type="date" name="end_date" />
-                <label class="text-white" for="end_date">End date</label>
+                <x-input class="flex-1" type="date" name="end_date"  placeholder="End date"/>
             </fieldset>
         </div>
     </form>

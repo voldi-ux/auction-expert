@@ -17,8 +17,8 @@ class CarController
     public function index()
     {
         //
-         $listed_cars = Car::with(["images", "docs"])->where("status","pending")->paginate(1);
-        return view("main.listings", ["listed_cars"=> $listed_cars]);
+        $listed_cars = Car::with(["images", "docs"])->where("status", "pending")->paginate(4);
+        return view("main.listings", ["listed_cars" => $listed_cars]);
     }
 
     /**
@@ -28,7 +28,7 @@ class CarController
     {
         //
 
-        
+
     }
 
     /**
@@ -47,35 +47,36 @@ class CarController
         $car = new Car($validated);
 
         $user = User::find(Auth::user()->id);
-        
+
         $user->cars()->save($car);
 
-        foreach($files as $file) {
-            $p = $file->store("vehicle-images" ,"public");
+        foreach ($files as $file) {
+            $p = $file->store("vehicle-images", "public");
             array_push($paths, ["path" => $p]);
         }
 
-        foreach($docs as $file) {
-            $p = $file->store("vehicle-docs" ,"public");
+        foreach ($docs as $file) {
+            $p = $file->store("vehicle-docs", "public");
             array_push($docs_paths, ["path" => $p]);
         }
 
 
-        
+
         $car->images()->createMany($paths);
         $car->docs()->createMany($docs_paths);
-        
+
         return redirect(route("list_car"))->with(["message" => "Vehicle uploaded successfully"]);
     }
-    
 
 
-    
-     public function decline(Car $car) {
-          $car->status = "declined";
-          $car->save();
-          return view(route("listings"));
-     }
+
+
+    public function decline(Car $car)
+    {
+        $car->status = "declined";
+        $car->save();
+        return view(route("listings"));
+    }
     /**
      * Remove the specified resource from storage.
      */
@@ -84,22 +85,23 @@ class CarController
         //
     }
 
-     
+
     //returns view of all listed vehicles by the current seller
-    public function listed_cars() {
-        $cars = Car::paginate(4);
-     return view("main.listedAuctions", ["cars"=> $cars]);
+    public function listed_cars()
+    {
+        $cars = Car::where("user_id", Auth::user()->id)->paginate(4);
+        return view("main.listedAuctions", ["cars" => $cars]);
     }
-    
- //returns view to list a vehicle
-  public   function list() {
-    return view("main.list");
-}
+
+    //returns view to list a vehicle
+    public   function list()
+    {
+        return view("main.list");
+    }
 
 
-public function auctions_entered() {
-     return view("main.auctionsEntered"); 
-}
-
-    
+    public function auctions_entered()
+    {
+        return view("main.auctionsEntered");
+    }
 }

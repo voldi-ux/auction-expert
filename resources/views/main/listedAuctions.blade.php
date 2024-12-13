@@ -55,6 +55,8 @@
               <x-nothingToShow msg="You have not listed any vehicle yet"/>
             @endforelse
         </div>
-        
+        <div class="flex justify-center my-20 text-orange">
+            {{$cars->links()}}
+        </div>
     </section>
 </x-app-layout>

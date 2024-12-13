@@ -66,13 +66,9 @@
             />
         </div>
         <div class="flex space-x-4 justify-center">
-            <x-input
-                value="{{$car->condition}}"
-                type="text"
-                class="w-5/12"
-                name="condition"
-                placeholder="Car condition"
-            />
+             <x-select name="condition" class="w-5/12" >
+                    <x-conditionsOptions value="{{$car->condition}}"/>
+                </x-select>
             <x-input
                 value="{{$car->colour}}"
                 type="text"
@@ -103,13 +99,9 @@
         </h1>
 
         <div class="flex space-x-4 justify-center">
-            <x-input
-                value="{{$car->fuel_type}}"
-                type="text"
-                class="w-5/12"
-                name="fuel_type"
-                placeholder="Fuel Type"
-            />
+             <x-select name="fuel_type" class="w-5/12" >
+                    <x-fuelTypeOptions value="{{$car->fuel_type}}"/>
+                </x-select>
             <x-input
                 value="{{$car->tank_capacity}}"
                 type="number"
@@ -154,13 +146,9 @@
         </div>
 
         <div class="flex space-x-4 justify-center">
-            <x-input
-                value="{{$car->drive}}"
-                type="text"
-                class="w-5/12"
-                name="drive"
-                placeholder="Car drive"
-            />
+              <x-select name="drive" class="w-5/12" >
+                    <x-driveTypeOptions value="{{$car->drive}}"/>
+                </x-select>
 
             <x-input
                 value="{{$car->transmission}}"
@@ -193,10 +181,7 @@
             value="description"
             class="w-full h-40 bg-transparent text-white"
             placeholder="Additional car Description"
-        >
-
-             {{$car->description}}
-            </textarea
+        >{{$car->description}}</textarea
         >
 
         <h1 class="text-xl font-semibold text-white text-center">

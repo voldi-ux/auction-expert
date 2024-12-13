@@ -5,7 +5,7 @@
 <div
     id="animation-carousel"
     class="relative w-full h-full"
-    data-carousel="static"
+    data-carousel="slide"
 >
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -31,7 +31,7 @@
             class="h-20 w-20"
             aria-current="true"
             aria-label="Slide 1"
-            data-carousel-slide-to="{{ $i }}"
+            data-carousel-slide-to="{{$i}}"
         >
             <img src="/storage/{{$car->images[$i]->path}}" />
         </button>

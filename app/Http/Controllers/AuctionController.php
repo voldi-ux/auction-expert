@@ -15,38 +15,53 @@ class AuctionController
      */
     public function get_all_running_auctions()
     {
-        $auctions = Auction::with(["car","bids"])->where("status", "active")->paginate(3);
+        $auctions = Auction::with(["car", "bids"])->where("status", "active")->paginate(4);
+        
         return view("main.runningAuctions", ['live_auctions' => $auctions]);
     }
 
-    public function get_user_auctions() {
-         $user = Auth::user();
-         return view("main.auctionsEntered", ["auctions" => $user->auctions]);
+
+
+    // get all the auctions the current user is participating in
+    public function get_user_auctions()
+    {
+        $user = Auth::user();
+        return view("main.auctionsEntered", ["auctions" => $user->auctions]);
     }
+
     
+    // get all the scheduled auctions for admin to view and ponential manage
+    public function get_scheduled_auctions() {
+        $auctions = Auction::with(["car"])->where("status", "scheduled")->paginate(4);
+        return view("main.scheduled", ['scheduled_auctions' => $auctions]);
+    }
+
+
+    // returns live auctions for all users
     public function home()
     {
-    $auctions = Auction::with(["car"])->where("status", "active")->paginate(3);
-        return view("home", ['live_auctions' => $auctions]);
+        $auctions = Auction::with(["car"])->where("status", "active")->paginate(4);
+        $scheduled = Auction::with(["car"])->where("status", "scheduled")->latest()->limit(4)->get();
+        return view("home", ['live_auctions' => $auctions, "scheduled" => $scheduled]);
     }
 
-    
+
     public function auction_view(Auction $auction, Request $request)
-    {   
+    {
         //should return live auctions that are similar to the current one being viewd
         $similar = Auction::with(["car"])->where("status", "active")->limit(8)->get();
-    
-        return view("auctionView", ["auction" => $auction, "similar"=> $similar]);
+
+        return view("auctionView", ["auction" => $auction, "similar" => $similar]);
     }
 
 
-
+    
 
     /**
      * create an auction.
      */
     public function store(Car $car, Request $request)
-    {   
+    {
         $validated = $request->validate([
             "bid_increment" => ["required"],
             "start_bid_amount" => ["required"],
@@ -54,7 +69,7 @@ class AuctionController
             "start_date" => ["required"],
             "when"        => ["required"]
         ]);
-    
+
         //to do
         /**
          * Make sure start and end date are not in the past
@@ -62,10 +77,10 @@ class AuctionController
          * 
          * if now is set then then the start auction should start immidiately
          */
-        
+
         $status = $validated["when"] == "now" ? "active" : "scheduled";
 
-        $car->auction()->create(array_merge($validated, ["creator_id" => Auth::user()->id,"status" => $status]));
+        $car->auction()->create(array_merge($validated, ["creator_id" => Auth::user()->id, "status" => $status]));
         $car->status =  $status;
         $car->save();
 
@@ -73,16 +88,17 @@ class AuctionController
     }
 
 
-    public function decline(Car $car , Request $request) {
+    public function decline(Car $car, Request $request)
+    {
 
         $car->status = "declined";
         $car->save(); // commit the car back to the database
-       return redirect(route("listings"))->with(["message" => "declined successfully"]);
+        return redirect(route("listings"))->with(["message" => "declined successfully"]);
     }
 
 
-    public function scheduled_auctions() {
+    public function scheduled_auctions()
+    {
         return view("main.scheduled");
     }
-    
 }

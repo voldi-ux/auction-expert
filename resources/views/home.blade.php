@@ -132,41 +132,17 @@
                 <div class="flex items-center space-x-4">
                     <h1 class="text-lg text-white">Car Condition</h1>
                     <div class="space-x-4">
-                        <button
-                            class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                        >
-                            All
-                        </button>
-                        <button
-                            class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                        >
-                            new
-                        </button>
-                        <button
-                            class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                        >
-                            used
-                        </button>
-                        <button
-                            class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                        >
-                            fair
-                        </button>
+                         <x-tag title="All"/>
+                         <x-tag title="New"/>
+                         <x-tag title="Used"/>
+                         <x-tag title="Fair"/>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
                     <h1 class="text-lg text-white">Sort Order</h1>
                     <div class="space-x-4">
-                        <button
-                            class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                        >
-                            Newly listed first
-                        </button>
-                        <button
-                            class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                        >
-                            Oldest first
-                        </button>
+                        <x-tag title="Newly listed first"/>
+                        <x-tag title="Oldest first"/>
                     </div>
                 </div>
             </header>
@@ -188,7 +164,7 @@
                 </button>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-8 justify-center"> 
+            <div class="flex flex-wrap gap-8 "> 
           @forelse ($live_auctions as $auction)
             <x-card.live  :auction="$auction"/>
             @empty
@@ -204,12 +180,12 @@
                 <a class="text-lg text-orange" href="/scheduled-auctions">See All</a>
             </div>
 
-            <div class="flex flex-wrap space-x-8 justify-center">
-                <x-card.scheduled />     
-                <x-card.scheduled />     
-                <x-card.scheduled />     
-                <x-card.scheduled />     
-
+            <div class="flex flex-wrap space-x-8">
+           @forelse ($scheduled as $auction)
+            <x-card.scheduled  :auction="$auction"/>
+            @empty
+            <x-nothingToShow :msg="$msg" />
+            @endforelse
             </div>
         </section>
         <div class="gradient2">

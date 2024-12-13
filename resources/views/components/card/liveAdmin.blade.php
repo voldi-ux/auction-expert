@@ -3,11 +3,11 @@
 
 
 
-<div class="w-80 min-h-90 gradient2 rounded-lg space-y-8 pb-2">
+<div class="w-80 min-h-90 p-2 gradient2 rounded-lg space-y-8 pb-2 transition-all hover:scale-105">
     <div class="bg-white rounded-lg">
         <!-- make the image clickable to go the next view of the auction -->
-        <a href="/auction/{{route('auction_view', $auction->id)}}">
-            <img src="/storage/images/car1.png" />
+        <a  class="h-40 block p-2" href="{{route('auction_view', $auction->id)}}">
+            <img src="/storage/images/car1.png"  class="h-full mx-auto"/>
         </a>
     </div>
 

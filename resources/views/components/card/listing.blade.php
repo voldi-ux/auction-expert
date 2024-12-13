@@ -11,12 +11,12 @@
 <x-modal modal_id="listing-images-view-modal"  title="Uploaded Vehicle Images">
    <x-uploadedImagesSlider :images="$car->images" />    
 </x-modal>
-<div class="w-80 min-h-90 gradient2 p-2 rounded-lg space-y-4 pb-8 transition-all hover:scale-110">
+<div class="w-80 min-h-90 gradient2 p-2 rounded-lg space-y-4 pb-8 transition-all hover:scale-105">
     <div class="bg-white rounded-lg">
         <!-- make the image clickable to go the next view of the auction -->
-        <a href="/auction/id" class="h-40 block p-2">
+        <div  class="h-40 block p-2">
             <img src="/storage/{{$car->images[0]->path}}" class="h-full mx-auto"  />
-        </a>
+        </div>
     </div>
     <h1 class="text-lg text-white text-center font-semibold">{{$car->model}}  {{$car->year}}</h1>
     <div class="flex justify-between px-2">
