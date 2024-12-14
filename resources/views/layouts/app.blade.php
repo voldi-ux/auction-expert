@@ -44,12 +44,15 @@
                         routeName="home"
                     />
                     @endcanany
+
+                    @canany(["is-seller","is-admin"])
                     <x-side-bar-link
                         icon="fas fa-chart-area"
                         title="Analytics"
                         :active="request()->is('app/analytic')"
                         routeName="analytics"
                     />
+                    @endcanany
 
                     <x-side-bar-link
                         icon="fas fa-bell"
@@ -69,11 +72,26 @@
                     
                     @can("is-buyer")
                         <x-side-bar-link
+                        icon="fas fa-user-check"
+                        title="Status"
+                        :active="request()->is('buyer/status')"
+                        routeName="buyer_status"
+                    />
+                    
+                        <x-side-bar-link
                         icon="fas fa-shipping-fast"
                         title="Your Auctions"
-                        :active="request()->is('app/auctions-entered')"
-                        routeName="entered"
+                        :active="request()->is('buyer/auctions-entered')"
+                        routeName="entered_auctions"
                     />
+                    
+                        <x-side-bar-link
+                        icon="far fa-file"
+                        title="Documents"
+                        :active="request()->is('buyer/documents')"
+                        routeName="buyer_docs"
+                    />
+
                     @endcan
                       
                    @can("is-seller")
@@ -91,7 +109,9 @@
                         :active="request()->is('seller/listed')"
                         routeName="listed"
                     />
-                    @endcan @can("is-admin")
+                    @endcan 
+                    
+                    @can("is-admin")
                     <x-side-bar-link
                         icon="fas fa-shipping-fast"
                         title="Live Auctions"

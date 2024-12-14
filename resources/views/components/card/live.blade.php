@@ -11,16 +11,38 @@
         </a>
     </div>
 
-    <div class="flex px-2 justify-between items-center">
-        <h1 class="tex-lg text-white font-semibold">
+    <div class="px-2 text-center">
+        <h1 class="tex-lg text-white font-semibold  text-center">
             {{$auction->car->make}} {{$auction->car->model}}
         </h1>
-        <i class="fa fa-heart text-lg text-white"></i>
     </div>
     <div class="flex flex-col px-2 items-center justify-center">
         <h1 class="text-white">Top Bid</h1>
         <h1 class="font-semibold text-orange">R 4000 000</h1>
     </div>
+    <div class="flex justify-between px-2">
+        <div>
+            <h1 class="text-white">Car Mileage</h1>
+        </div>
+
+        <h1 class="text-gray">{{$auction->car->mileage}}Km</h1>
+    </div>
+
+    <div class="flex justify-between px-2">
+        <div>
+            <h1 class="text-white">Fuel type</h1>
+        </div>
+
+        <h1 class="text-gray">{{$auction->car->fuel_type}}</h1>
+    </div>
+    <div class="flex justify-between px-2">
+        <div>
+            <h1 class="text-white">Transmission</h1>
+        </div>
+
+        <h1 class="text-gray">{{$auction->car->transmission}}</h1>
+    </div>
+
     <div class="flex justify-between px-2 text-white">
         <div class="text-center">
             <h1 class="text-sm">Time remaining</h1>

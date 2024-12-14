@@ -1,8 +1,10 @@
 <button
     data-dropdown-toggle="auth_dropdown"
-    class="transition-all hover:text-yellow-600 p-2"
+    class="transition-all hover:text-yellow-600 p-2 space-x-4"
 >
-    <i class="fas fa-user text-xl"></i>
+    <i class="fas fa-user text-xl"></i> <span>
+        {{auth()->user()->name}}
+    </span>  
 </button>
 <div
     id="auth_dropdown"

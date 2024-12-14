@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\User;
 use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,15 +21,16 @@ class AuctionController
         return view("main.runningAuctions", ['live_auctions' => $auctions]);
     }
 
-
-
     // get all the auctions the current user is participating in
-    public function get_user_auctions()
-    {
-        $user = Auth::user();
+    public function auctions_entered()
+    {    
+        // eager load the auctions and paginate them
+        $user = User::with(["auctions"=> function($q) {
+             $q->paginate(10); // 10 auction per page
+        }])->find(Auth::user()->id);
+       
         return view("main.auctionsEntered", ["auctions" => $user->auctions]);
     }
-
     
     // get all the scheduled auctions for admin to view and ponential manage
     public function get_scheduled_auctions() {
@@ -97,8 +99,16 @@ class AuctionController
     }
 
 
-    public function scheduled_auctions()
-    {
-        return view("main.scheduled");
+
+
+    public function enter_attempt(Auction $auction, Request $request) {
+    //    to do
+    //   check if the user is partaking in this auction and if yes, redirect them to their live auction section
+    //otherwise show them a page where they will choose how to make a depositve
+    // for now assume they latter
+
+
+    
+    return view("main.paymentType", ["auction_ref" => "CT00000000000000"]);
     }
 }

@@ -6,13 +6,10 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyticController;
-
-
-
+use App\Http\Controllers\BuyerController;
 
 //geenral
 Route::get("/", [AuctionController::class, "home"])->name("home");
-
 
 Route::get("/auction/{auction}", [AuctionController::class, "auction_view"])->name("auction_view");
 
@@ -25,6 +22,8 @@ Route::middleware("auth")->group(function () {
 
 
     Route::get("/app/profile", [ProfileController::class, "get_profile"])->name("profile");
+    Route::post("/create-profile", [ProfileController::class, "create_profile"])->name("create_profile");
+    Route::patch("/update-profile", [ProfileController::class, "update_profile"])->name("update_profile");
 
     Route::get("app/notifications", function () {
         return view("main.notifications");
@@ -37,10 +36,20 @@ Route::middleware("auth")->group(function () {
 });
 
 
+
+
+
 // buyer routes
-Route::middleware(["auth", "hasRole" . ":Buyer"])->prefix("buyer", function () {
-    Route::get("/auctions-entered", [CarController::class, "auctions_entered"])->name("entered");
-})->middleware(["auth", "seller"]);
+Route::middleware(["auth", "hasRole" . ":Buyer"])->prefix("buyer")->group(function () {
+    //todo
+    // replace the car class with the auction class
+    Route::get("/auctions-entered", [AuctionController::class, "auctions_entered"])->name("entered_auctions");
+    Route::get("/status", [BuyerController::class, "status"])->name("buyer_status");
+    Route::get("/documents", [BuyerController::class, "document"])->name("buyer_docs");
+    Route::post("/enter-auction/{auction}", [AuctionController::class, "enter_attempt"])->name("enter_auction");
+   
+   
+});
 
 
 //seller actions
@@ -70,12 +79,6 @@ Route::middleware(["auth", "hasRole" . ":Admin"])->prefix("admin")->group(functi
 
     Route::get("/live-auctions", [AuctionController::class, "get_all_running_auctions"])->name("running");
 });
-
-
-
-
-
-
 
 
 require __DIR__ . '/auth.php';

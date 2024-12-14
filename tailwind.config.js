@@ -24,6 +24,7 @@ export default {
                 orange: "#FF6B4A",
                 white: "#ECE9E9",
                 gray: "#707070",
+                dark1: "#29292E",
             },
 
             height: {

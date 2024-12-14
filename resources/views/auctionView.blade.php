@@ -116,13 +116,13 @@
                 </div>
                 <div class="w-80 h-min gradient2 p-4 space-y-8">
                     <div
-                        class="flex px-2 justify-between border-b-2 border-white items-center pb-1"
+                        class="flex px-2  border-b-2 border-white items-center pb-1"
                     >
                         <h1 class="tex-lg text-white font-semibold">
                             {{$auction->car->make}}  
                             {{$auction->car->model}}
                         </h1>
-                        <i class="fa fa-heart text-lg text-white"></i>
+                        
                     </div>
 
                     <div class="p-2 gradient3 text-center rounded-lg">
@@ -171,18 +171,43 @@
 
                         <h1 class="text-gray">{{$auction->car->transmission}}</h1>
                     </div>
+                         
+                 
+                     <!-- To do
+                      A seller should not see this, only  
+                     
+                     -->
+                      
+                     @guest
+                     <button
+                      id="bid-btn"
+                     class="p-2 flex justify-center items-center w-full bg-dark1 rounded-lg text-lg text-white"
+                     >
+                     
+                     Login To Make Bids
+                 </button>                 
+                    @endguest
 
-                    <button
-                        class="p-2 flex justify-center items-center w-full gradient4 rounded-lg text-lg text-white"
-                    >
-                        @guest
-                           Login To Make Bids
-                        @endguest
 
-                        @auth 
-                          Start biding
-                        @endauth
-                    </button>
+                    @auth 
+                      
+                    @can("is-buyer")
+                   
+                         <button
+                         data-drawer-target="drawer-payment-type" data-drawer-show="drawer-payment-type" data-drawer-placement="bottom" aria-controls="drawer-payment-type"
+                       class="p-2 flex justify-center items-center w-full gradient4 rounded-lg text-lg text-white"
+                       >
+                        Place A Bid
+                   </button>
+
+                    <x-paymentType />
+                      
+                    
+                    @endcan
+
+                    @endauth
+
+                     
 
                     <x-accordion />
                 </div>
@@ -328,5 +353,17 @@
                 <p class="text-lg text-orange-700">coypright &copy; 2024</p>
             </footer>
         </div>
+
+        <script>
+            let ele = document.getElementById("bid-btn");
+
+            ele.addEventListener("click", function() {
+                //    <!-- 
+                //        To do
+                //        1) make an http request to  check if the buyer is already particiapting in the current auction
+                //        2) if two, holds then we redirect to their auctions page
+                //      -->
+            })
+        </script>
     </body>
 </html>

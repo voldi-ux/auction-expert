@@ -79,13 +79,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Auction::class);
     }
 
-    // the auctions that the user has craeted
-    // the foreign key is creator_id, thus must be updated
-    public function created_auctions() : HasMany {
-         return $this->hasMany(Auction::class);
-    }
-
-
     //get a user's identity
     public function identity() : HasOne {
         return $this->hasOne(Identity::class);

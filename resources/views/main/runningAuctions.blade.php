@@ -15,16 +15,8 @@
         <div class="flex items-center space-x-4">
             <h1 class="text-lg text-white">Sort Order</h1>
             <div class="space-x-4 flex-1">
-                <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                >
-                    Newly listed first
-                </button>
-                <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                >
-                    Oldest first
-                </button>
+                <x-tag title="Newly listed first"/>
+                <x-tag title="Oldest first"/>
             </div>
             <span>
                 <button
