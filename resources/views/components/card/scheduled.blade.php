@@ -51,7 +51,7 @@
 
     <div class="flex justify-between px-2">
         <h1 class="text-white text-sm">Starting Bid</h1>
-        <h1 class="text-2xl font-bold text-orange">R {{$auction->start_bid_amount}}</h1>
+        <h1 class="text-2xl font-bold text-orange">R  {{number_format($auction->start_bid_amount)}}</h1>
     </div>
 
     <div class="flex justify-between px-2">

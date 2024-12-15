@@ -132,13 +132,19 @@
                           </h1>
                         @else
                         <h1 class="text-lg text-white">Top Bid</h1>
-                        <h1 class="text-3xl text-white font-bold ">
-                            R 5000 000
+                          @if($auction->getTopBid() > 0) 
+                            <h1 class="text-3xl text-white font-bold ">
+                            R  {{number_format($auction->getTopBid())}}
                         </h1>
+                        @else 
+                        <h1 class="text-3xl text-white font-bold ">
+                         NO BIDS
+                    </h1>
+                          @endif
                         @endif
                     </div>
 
-                    <div class="flex justify-between px-2 text-white">
+                    <div class="flex justify-between px-2 text-white items-center">
                         <div class="text-center">
                             <h1 class="text-lg">Time remaining</h1>
                             <h1 class="text-sm">{{$auction->remainingTimeFormated()}}</h1>
@@ -172,6 +178,14 @@
                         <h1 class="text-gray">{{$auction->car->transmission}}</h1>
                     </div>
                          
+                    <div class="flex justify-between px-2">
+                        <div>
+                            <h1 class="text-white">Starting Bid Amount</h1>
+                        </div>
+
+                        <h1 class="text-gray">R  {{number_format($auction->start_bid_amount)}}</h1>
+                    </div>
+                         
                  
                      <!-- To do
                       A seller should not see this, only  
@@ -192,15 +206,16 @@
                     @auth 
                       
                     @can("is-buyer")
-                   
-                         <button
-                         data-drawer-target="drawer-payment-type" data-drawer-show="drawer-payment-type" data-drawer-placement="bottom" aria-controls="drawer-payment-type"
-                       class="p-2 flex justify-center items-center w-full gradient4 rounded-lg text-lg text-white"
-                       >
+                     
+                        @csrf
+                        <button
+                        data-drawer-target="drawer-payment-type" data-drawer-show="drawer-payment-type" data-drawer-placement="bottom" aria-controls="drawer-payment-type"
+                        class="p-2 flex justify-center items-center w-full gradient4 rounded-lg text-lg text-white"
+                        >
                         Place A Bid
-                   </button>
+                    </button>
 
-                    <x-paymentType />
+                    <x-paymentType :auction="$auction" />
                       
                     
                     @endcan
@@ -331,7 +346,7 @@
             @endforelse
             </div>
         </section>
-        <div class="gradient2">
+        <div class="gradient2 text-white">
             <footer class="container mx-auto flex flex-col items-center">
                 <div><img src="/storage/images/logo.png" class="w-40" /></div>
                 <div class="flex justify-between w-full">
@@ -350,7 +365,7 @@
                         </ul>
                     </div>
                 </div>
-                <p class="text-lg text-orange-700">coypright &copy; 2024</p>
+                <p class="text-lg text-orange">coypright &copy; 2024</p>
             </footer>
         </div>
 

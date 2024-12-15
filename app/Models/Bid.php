@@ -9,7 +9,10 @@ class Bid extends Model
 {
     //
 
-
+    protected $fillable = [
+        "amount"
+    ];
+    
     public function auction() : BelongsTo {
         return $this->belongsTo(Auction::class);
     }

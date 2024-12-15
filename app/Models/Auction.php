@@ -17,6 +17,12 @@ class Auction extends Model
    "start_bid_amount", 
    "start_date", "end_date"];
 
+   public function getTopBid() {
+    $top = $this->bids()->orderBy("amount", "desc")->first();
+   
+    return  ($top ? $top->amount : 0);
+
+   }
    public function auction_creator() : BelongsTo {
     return $this->belongsTo(User::class);
    }

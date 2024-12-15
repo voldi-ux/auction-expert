@@ -10,7 +10,7 @@
   </h2>
   <div id="accordion-flush-body-1" class="hidden border-0" aria-labelledby="accordion-flush-heading-1">
     <div class="py-5">
-      <p class="mb-2 text-gray-500 dark:text-gray-400">Make a desposit of R 5000 before joing a an auction</p>
+      <p class="mb-2 text-gray-500 dark:text-gray-400">Make a refundable deposit of R 5000 before joing a an auction</p>
     </div>
   </div>
   

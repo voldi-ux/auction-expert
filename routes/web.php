@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Middleware\HasRole;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
@@ -7,6 +8,16 @@ use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyticController;
 use App\Http\Controllers\BuyerController;
+use App\Models\Auction;
+
+//test top bid
+
+Route::get("/top/{auction}", function (Auction $auction) {
+     $auction->bids()->create(["amount" => 25555000]);
+    return $auction->getTopBid();
+});
+
+
 
 //geenral
 Route::get("/", [AuctionController::class, "home"])->name("home");
@@ -30,6 +41,7 @@ Route::middleware("auth")->group(function () {
     })->name("notifications");
 
 
+
     Route::get("/app/settings", function () {
         return view("main.settings");
     })->name("settings");
@@ -47,8 +59,10 @@ Route::middleware(["auth", "hasRole" . ":Buyer"])->prefix("buyer")->group(functi
     Route::get("/status", [BuyerController::class, "status"])->name("buyer_status");
     Route::get("/documents", [BuyerController::class, "document"])->name("buyer_docs");
     Route::post("/enter-auction/{auction}", [AuctionController::class, "enter_attempt"])->name("enter_auction");
-   
-   
+    Route::post("/deposit/{auction}", [BuyerController::class, "pay_deposit"])->name("pay_deposit");
+
+    Route::get("/join-auction/{auction}", [BuyerController::class, "join_auction"])->name("join_auction");
+    Route::post("/place-bid/{auction}", [AuctionController::class, "place_bid"])->name("place_bid");
 });
 
 

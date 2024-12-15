@@ -2,7 +2,7 @@
 
 
 <div
-    class="transition-all hover:scale-105 p-2  w-80 min-h-90 gradient2 rounded-lg space-y-8 pb-8"
+    class="transition-all  select-none hover:scale-105 p-2  w-80 min-h-90 gradient2 rounded-lg space-y-8 pb-8"
 >
     <div class="bg-white rounded-lg">
         <!-- make the image clickable to go the next view of the auction -->
@@ -18,7 +18,15 @@
     </div>
     <div class="flex flex-col px-2 items-center justify-center">
         <h1 class="text-white">Top Bid</h1>
-        <h1 class="font-semibold text-orange">R 4000 000</h1>
+           @if($auction->getTopBid() > 0) 
+                            <h1 class="text-3xl text-white font-bold ">
+                            R  {{number_format($auction->getTopBid())}}
+                        </h1>
+                        @else 
+                        <h1 class="text-3xl text-white font-bold ">
+                         NO BIDS
+                    </h1>
+                          @endif
     </div>
     <div class="flex justify-between px-2">
         <div>

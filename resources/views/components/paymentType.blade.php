@@ -1,4 +1,6 @@
-@props(["auction_ref" => "CT000000000"])
+@props(["auction_ref" => "CT000000000", "auction"])
+
+
 <!-- drawer component -->
 <div id="drawer-payment-type" class="gradient2 text-white fixed bottom-0 left-0 right-0 z-40 w-full p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-y-full " tabindex="-1" aria-labelledby="drawer-bottom-label">
     <button type="button" data-drawer-hide="drawer-payment-type" aria-controls="drawer-payment-type" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
@@ -12,9 +14,12 @@
          <h1 class="text-center text-3xl font-semibold">
             How would you like to pay the deposit ?
          </h1>
-         <button class="p-2 text-lg animate-pulse bg-dark1 w-60 text-white rounded-full justify-center">
-            Securely pay online
-         </button>
+          <form action="{{route('pay_deposit', $auction->id)}}" method="post" >
+            @csrf
+             <button class="p-2 text-lg animate-pulse bg-dark1 w-60 text-white rounded-full justify-center">
+                Securely pay online
+               </button>
+            </form>
          <h1 class="text-2xl font-bold">
             OR
          </h1>

@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+
 
 class AuctionController
 {
@@ -99,6 +99,22 @@ class AuctionController
     }
 
 
+    public function place_bid(Auction $auction, Request $request) {
+        $validated = $request->validate(["amount" => ["required", "integer"]]);
+        $auction->bids()->create($validated);
+        $currentTop = $auction->getTopBid();
+
+        // I don't think this is actually needed
+        $currentTop = $currentTop > $validated["amount"] ? $currentTop : $validated["amount"];
+        
+        // these are automatic bids i.e R1000... etc
+        $bids = [];
+        foreach(range(1,5) as $i ) {
+            $bids[$i] = $currentTop + $auction->bid_increment*$i;
+        }
+
+        return Response()->json(["topBid" => $currentTop, "bids" => $bids]);
+    }
 
 
     public function enter_attempt(Auction $auction, Request $request) {

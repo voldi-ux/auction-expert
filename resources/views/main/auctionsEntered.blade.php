@@ -1,9 +1,6 @@
 
 <x-app-layout>
-    <x-drawer
-        drawer_id="live-auction-filter-drawer"
-        title="Advanced Filtering"
-    />
+
  
     <section class="p-8">
         <h1 class="text-3xl text-white mb-20">Your Auctions</h1>

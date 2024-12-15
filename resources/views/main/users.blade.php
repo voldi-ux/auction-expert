@@ -8,9 +8,8 @@
     </x-drawer>
 
     <x-modal modal_id="create-seller" title="Add New Seller">
-        <div>
+        
             <x-createSeller />
-        </div>
         
     </x-modal>
 

@@ -11,13 +11,23 @@
     class="z-10 hidden gradient2 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
 >
     <ul class="py-2 text-sm" aria-labelledby="dropdownDefaultButton">
-        <li>
+           @canany(["is-seller", "is-admin"])
+              <li>
             <a
                 href="/app/analytic"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Dashboard</a
             >
         </li>
+          @else
+            <li>
+            <a
+                href="{{route('buyer_status')}}"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Dashboard</a
+            >
+        </li>
+           @endcanany
         <li>
             <a
                 href="/app/settings"
