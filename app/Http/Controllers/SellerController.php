@@ -37,9 +37,4 @@ class SellerController
         return view("main.users", ["sellers" => $sellers]);
     }
 
-
-
-    public function list() {
-        
-    }
 }

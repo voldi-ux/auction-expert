@@ -3,8 +3,8 @@
     <header
         class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat p-8"
     >
-        <x-searchBar placeholder="Search make, model, etc..."/>
-        
+        <x-searchBar placeholder="Search make, model, etc..." />
+
         <div class="flex items-center space-x-4">
             <h1 class="text-lg text-white">Filter</h1>
             <div class="space-x-4 flex-1">
@@ -48,11 +48,10 @@
     <section class="p-8">
         <h1 class="text-3xl text-white mb-20">Listed Vehicles</h1>
         <div class="flex flex-wrap gap-8 justify-center">
-
             @forelse($cars as $car)
             <x-card.listed :car="$car" />
             @empty
-              <x-nothingToShow msg="You have not listed any vehicle yet"/>
+            <x-nothingToShow msg="You have not listed any vehicle yet" />
             @endforelse
         </div>
         <div class="flex justify-center my-20 text-orange">

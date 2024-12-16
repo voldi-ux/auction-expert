@@ -1,6 +1,4 @@
-@props(["car"]) 
-
-@php $no_imgs = count($car->images); @endphp
+@props(["car"]) @php $no_imgs = count($car->images); @endphp
 
 <div
     id="animation-carousel"
@@ -31,7 +29,7 @@
             class="h-20 w-20"
             aria-current="true"
             aria-label="Slide 1"
-            data-carousel-slide-to="{{$i}}"
+            data-carousel-slide-to="{{ $i }}"
         >
             <img src="/storage/{{$car->images[$i]->path}}" />
         </button>

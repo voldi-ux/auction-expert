@@ -1,5 +1,4 @@
-@php
- $msg = "There’s currently no live auction. Please check back later.";
+@php $msg = "There’s currently no live auction. Please check back later.";
 @endphp
 
 <x-app-layout>
@@ -15,8 +14,8 @@
         <div class="flex items-center space-x-4">
             <h1 class="text-lg text-white">Sort Order</h1>
             <div class="space-x-4 flex-1">
-                <x-tag title="Newly listed first"/>
-                <x-tag title="Oldest first"/>
+                <x-tag title="Newly listed first" />
+                <x-tag title="Oldest first" />
             </div>
             <span>
                 <button
@@ -36,13 +35,13 @@
         <h1 class="text-3xl text-white mb-20">Live Auctions</h1>
         <div class="flex flex-wrap gap-8">
             @forelse ($live_auctions as $auction)
-            <x-card.liveAdmin  :auction="$auction"/>
+            <x-card.liveAdmin :auction="$auction" />
             @empty
             <x-nothingToShow :msg="$msg" />
             @endforelse
         </div>
-           <div class="flex justify-center my-8">
-                {{$live_auctions->links()}}
-           </div>
+        <div class="flex justify-center my-8">
+            {{$live_auctions->links()}}
+        </div>
     </section>
 </x-app-layout>

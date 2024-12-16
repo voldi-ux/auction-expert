@@ -21,7 +21,7 @@ class AddressFactory extends Factory
             "province" => fake()->country(),
             "suburb" => fake()->city(),
             "street" => fake()->streetAddress(),
-            "postal_code" => fake()->postcode(),
+            "postal_code" => fake()->numberBetween(0, 1000),
             "unit_no" => fake()->numberBetween(0, 1000)
         ];
     }

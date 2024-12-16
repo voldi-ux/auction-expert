@@ -1,5 +1,5 @@
- @if (session('message'))
-        <x-toast :message="session('message')" />
+@if (session('message'))
+<x-toast :message="session('message')" />
 @endif
 
 <x-app-layout>
@@ -8,26 +8,13 @@
     </x-drawer>
 
     <x-modal modal_id="create-seller" title="Add New Seller">
-        
-            <x-createSeller />
-        
+        <x-createSeller />
     </x-modal>
 
     <header class="py-2 px-8 space-y-4">
         <div class="flex justify-between">
             <span></span>
             <div class="text-white space-x-4">
-                <!-- <button
-                    class="border-2 p-1 border-gray"
-                    data-drawer-target="sellers-filter-drawer"
-                    data-drawer-show="sellers-filter-drawer"
-                    data-drawer-placement="right"
-                    aria-controls="sellers-filter-drawer  "
-                >
-                    <i class="fas fa-sort-amount-down-alt"></i>
-                    <span> Filter </span>
-                </button> -->
-
                 <button
                     class="border-2 p-1 border-gray"
                     data-modal-target="create-seller"
@@ -40,10 +27,10 @@
             </div>
         </div>
 
-          <x-searchBar placeholder="Search name, email, etc..."/>
+        <x-searchBar placeholder="Search name, email, etc..." />
     </header>
-    <section class="min-h-96 m-8  p-4 flex flex-col rounded-lg gradient2">
-        <div class="relative overflow-x-auto flex-1 ">
+    <section class="min-h-96 m-8 p-4 flex flex-col rounded-lg gradient2">
+        <div class="relative overflow-x-auto flex-1">
             <table class="w-full text-sm text-left rtl:text-right">
                 <thead class="text-white uppercase">
                     <tr>
@@ -54,20 +41,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                   @forelse($sellers as $seller)
-                   <x-sellerTable.seller :seller="$seller"/>
-                   @empty
-                   <x-nothingToShow msg = "NO sellers"/>
-                   @endforelse
-
-
-                    
+                    @forelse($sellers as $seller)
+                    <x-sellerTable.seller :seller="$seller" />
+                    @empty
+                    <x-nothingToShow msg="NO sellers" />
+                    @endforelse
                 </tbody>
             </table>
         </div>
         <div class="flex justify-center space-x-2 my-8 text-orange">
-             {{$sellers->links()}}
+            {{$sellers->links()}}
         </div>
     </section>
 </x-app-layout>

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string("city");
             $table->string("suburb");
             $table->string("street");
-            $table->string("unit_no");
-            $table->string("postal_code");
+            $table->integer("unit_no");
+            $table->integer("postal_code");
         });
     }
 

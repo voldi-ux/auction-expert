@@ -1,7 +1,5 @@
-@php
- $msg = "There’s currently no live auction. Please check back later.";
+@php $msg = "There’s currently no live auction. Please check back later.";
 @endphp
-
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -25,9 +23,9 @@
         <!-- Styles / Scripts -->
         @vite(['resources/js/app.js'])
     </head>
-    <body class="font-sans myBg ">
-            <x-drawer drawer_id="home-filter-drawer" title="Advanced Drawer" >
-            </x-drawer>
+    <body class="font-sans myBg">
+        <x-drawer drawer_id="home-filter-drawer" title="Advanced Drawer">
+        </x-drawer>
 
         <div class="flex flex-col">
             <nav class="flex text-white items-center justify-between px-10">
@@ -36,8 +34,8 @@
                 </div>
 
                 <div class="space-x-4">
-                   @guest
-                       <a
+                    @guest
+                    <a
                         class="text-lg hover:text-orange transition-all"
                         href="/login"
                         >Login</a
@@ -47,55 +45,45 @@
                         href="/register"
                         >Register</a
                     >
-                   @endguest
-
-                   @auth
-                     <x-authDropdown />
-                   @endauth
+                    @endguest @auth
+                    <x-authDropdown />
+                    @endauth
                 </div>
 
                 <div class="space-x-4">
-                    <a
-                        class=" text-lg hover:text-orange transition-all"
-                        href="/"
+                    <a class="text-lg hover:text-orange transition-all" href="/"
                         >Home</a
                     >
-                    <a
-                        class="text-lg hover:text-orange transition-all"
-                        href="/"
+                    <a class="text-lg hover:text-orange transition-all" href="/"
                         >Scheduled Auctions</a
                     >
-                    <a
-                        class="text-lg hover:text-orange transition-all"
-                        href=""
+                    <a class="text-lg hover:text-orange transition-all" href=""
                         >About</a
                     >
-                    <a
-                        class="text-lg hover:text-orange transition-all"
-                        href=""
+                    <a class="text-lg hover:text-orange transition-all" href=""
                         >Contact</a
                     >
                 </div>
             </nav>
             <header
-                class="mx-auto container pb-20 space-y-8 flex flex-col  w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat"
+                class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat"
             >
-                 <x-searchBar placeholder="Search make, model, etc..."/>
+                <x-searchBar placeholder="Search make, model, etc..." />
 
                 <div class="flex items-center space-x-4">
                     <h1 class="text-lg text-white">Car Condition</h1>
                     <div class="space-x-4">
-                         <x-tag title="All"/>
-                         <x-tag title="New"/>
-                         <x-tag title="Used"/>
-                         <x-tag title="Fair"/>
+                        <x-tag title="All" />
+                        <x-tag title="New" />
+                        <x-tag title="Used" />
+                        <x-tag title="Fair" />
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
                     <h1 class="text-lg text-white">Sort Order</h1>
                     <div class="space-x-4">
-                        <x-tag title="Newly listed first"/>
-                        <x-tag title="Oldest first"/>
+                        <x-tag title="Newly listed first" />
+                        <x-tag title="Oldest first" />
                     </div>
                 </div>
             </header>
@@ -105,44 +93,47 @@
             <div class="mb-20 flex justify-between">
                 <h1 class="text-3xl text-white font-semibold">Live Auctions</h1>
                 <div class="space-x-2 text-lg text-white">
-                     <button
-                    class=""
-                    data-drawer-target="home-filter-drawer"
-                    data-drawer-show="home-filter-drawer"
-                    data-drawer-placement="right"
-                    aria-controls="home-filter-drawer  "
-                >
-                    <i class="fas fa-sort-amount-down-alt"></i>
-                    <span> Filter </span>
-                </button>
+                    <button
+                        class=""
+                        data-drawer-target="home-filter-drawer"
+                        data-drawer-show="home-filter-drawer"
+                        data-drawer-placement="right"
+                        aria-controls="home-filter-drawer  "
+                    >
+                        <i class="fas fa-sort-amount-down-alt"></i>
+                        <span> Filter </span>
+                    </button>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-8 "> 
-          @forelse ($live_auctions as $auction)
-            <x-card.live  :auction="$auction"/>
-            @empty
-            <x-nothingToShow :msg="$msg" />
-            @endforelse
+            <div class="flex flex-wrap gap-8">
+                @forelse ($live_auctions as $auction)
+                <x-card.live :auction="$auction" />
+                @empty
+                <x-nothingToShow :msg="$msg" />
+                @endforelse
             </div>
 
             <div class="flex justify-center my-8">
                 {{$live_auctions->links()}}
-           </div>
-           
+            </div>
         </section>
 
         <section class="container mx-auto mb-20">
             <div class="flex justify-between mb-20">
-                <h1 class="text-3xl text-white font-semibold">Upcoming Auctions</h1>
-                <a class="text-lg text-orange" href="/scheduled-auctions">See All</a>
+                <h1 class="text-3xl text-white font-semibold">
+                    Upcoming Auctions
+                </h1>
+                <a class="text-lg text-orange" href="/scheduled-auctions"
+                    >See All</a
+                >
             </div>
 
-            <div class="flex flex-wrap  gap-8 ">
-           @forelse ($scheduled as $auction)
-            <x-card.scheduled  :auction="$auction"/>
-            @empty
-            <x-nothingToShow :msg="$msg" />
-            @endforelse
+            <div class="flex flex-wrap gap-8">
+                @forelse ($scheduled as $auction)
+                <x-card.scheduled :auction="$auction" />
+                @empty
+                <x-nothingToShow :msg="$msg" />
+                @endforelse
             </div>
         </section>
         <div class="gradient2">
@@ -167,6 +158,5 @@
                 <p class="text-lg text-orange-700">coypright &copy; 2024</p>
             </footer>
         </div>
-
     </body>
 </html>

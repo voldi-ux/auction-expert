@@ -1,11 +1,7 @@
-        @if (session('message'))
-        <x-toast :message="session('message')" />
-        @endif
-
-
-@php
- $msg = "There’s currently no new car available. Please check back later.";
-@endphp
+@if (session('message'))
+<x-toast :message="session('message')" />
+@endif @php $msg = "There’s currently no new car available. Please check back
+later."; @endphp
 <x-app-layout>
     <x-drawer drawer_id="listing-filter-drawer" title="Advanced Filtering" />
     <header
@@ -44,13 +40,11 @@
     <section class="p-8">
         <h1 class="text-3xl text-white mb-20">Listed Vehicles</h1>
         <div class="flex flex-wrap gap-8">
-            
-            @forelse ($listed_cars as $car) 
-            <x-card.listing :car="$car"/>
+            @forelse ($listed_cars as $car)
+            <x-card.listing :car="$car" />
             @empty
-            <x-nothingToShow :msg="$msg"/>
-            @endforelse 
-            
+            <x-nothingToShow :msg="$msg" />
+            @endforelse
         </div>
         <div class="flex justify-center my-12 text-orange">
             {{$listed_cars->links()}}

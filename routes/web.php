@@ -8,15 +8,6 @@ use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyticController;
 use App\Http\Controllers\BuyerController;
-use App\Models\Auction;
-
-//test top bid
-
-Route::get("/top/{auction}", function (Auction $auction) {
-     $auction->bids()->create(["amount" => 25555000]);
-    return $auction->getTopBid();
-});
-
 
 
 //geenral

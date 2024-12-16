@@ -66,9 +66,9 @@
             />
         </div>
         <div class="flex space-x-4 justify-center">
-             <x-select name="condition" class="w-5/12" >
-                    <x-conditionsOptions value="{{$car->condition}}"/>
-                </x-select>
+            <x-select name="condition" class="w-5/12">
+                <x-conditionsOptions value="{{$car->condition}}" />
+            </x-select>
             <x-input
                 value="{{$car->colour}}"
                 type="text"
@@ -99,9 +99,9 @@
         </h1>
 
         <div class="flex space-x-4 justify-center">
-             <x-select name="fuel_type" class="w-5/12" >
-                    <x-fuelTypeOptions value="{{$car->fuel_type}}"/>
-                </x-select>
+            <x-select name="fuel_type" class="w-5/12">
+                <x-fuelTypeOptions value="{{$car->fuel_type}}" />
+            </x-select>
             <x-input
                 value="{{$car->tank_capacity}}"
                 type="number"
@@ -146,9 +146,9 @@
         </div>
 
         <div class="flex space-x-4 justify-center">
-              <x-select name="drive" class="w-5/12" >
-                    <x-driveTypeOptions value="{{$car->drive}}"/>
-                </x-select>
+            <x-select name="drive" class="w-5/12">
+                <x-driveTypeOptions value="{{$car->drive}}" />
+            </x-select>
 
             <x-input
                 value="{{$car->transmission}}"
@@ -181,7 +181,7 @@
             value="description"
             class="w-full h-40 bg-transparent text-white"
             placeholder="Additional car Description"
-        >{{$car->description}}</textarea
+            >{{$car->description}}</textarea
         >
 
         <h1 class="text-xl font-semibold text-white text-center">
@@ -191,7 +191,7 @@
             class="space-y-4 text-blue-600 h-40 overflow-y-auto border-2 border-dashed border-neutral-600 flex flex-col justify-center items-center"
         >
             @foreach($car->docs as $doc)
-             <a href="/storage/{{$doc->path}}" target="_blank">{{$doc->path}}</a>
+            <a href="/storage/{{$doc->path}}" target="_blank">{{$doc->path}}</a>
             @endforeach
         </div>
 

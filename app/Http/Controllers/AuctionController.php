@@ -17,23 +17,24 @@ class AuctionController
     public function get_all_running_auctions()
     {
         $auctions = Auction::with(["car", "bids"])->where("status", "active")->paginate(8);
-        
+
         return view("main.runningAuctions", ['live_auctions' => $auctions]);
     }
 
     // get all the auctions the current user is participating in
     public function auctions_entered()
-    {    
+    {
         // eager load the auctions and paginate them
-        $user = User::with(["auctions"=> function($q) {
-             $q->paginate(10); // 10 auction per page
+        $user = User::with(["auctions" => function ($q) {
+            $q->paginate(10); // 10 auction per page
         }])->find(Auth::user()->id);
-       
+
         return view("main.auctionsEntered", ["auctions" => $user->auctions]);
     }
-    
+
     // get all the scheduled auctions for admin to view and ponential manage
-    public function get_scheduled_auctions() {
+    public function get_scheduled_auctions()
+    {
         $auctions = Auction::with(["car"])->where("status", "scheduled")->paginate(8);
         return view("main.scheduled", ['scheduled_auctions' => $auctions]);
     }
@@ -57,7 +58,7 @@ class AuctionController
     }
 
 
-    
+
 
     /**
      * create an auction.
@@ -99,32 +100,31 @@ class AuctionController
     }
 
 
-    public function place_bid(Auction $auction, Request $request) {
+    public function place_bid(Auction $auction, Request $request)
+    {
         $validated = $request->validate(["amount" => ["required", "integer"]]);
         $auction->bids()->create($validated);
         $currentTop = $auction->getTopBid();
 
         // I don't think this is actually needed
         $currentTop = $currentTop > $validated["amount"] ? $currentTop : $validated["amount"];
-        
+
         // these are automatic bids i.e R1000... etc
         $bids = [];
-        foreach(range(1,5) as $i ) {
-            $bids[$i] = $currentTop + $auction->bid_increment*$i;
+        foreach (range(1, 5) as $i) {
+            $bids[$i] = $currentTop + $auction->bid_increment * $i;
         }
 
         return Response()->json(["topBid" => $currentTop, "bids" => $bids]);
     }
 
 
-    public function enter_attempt(Auction $auction, Request $request) {
-    //    to do
-    //   check if the user is partaking in this auction and if yes, redirect them to their live auction section
-    //otherwise show them a page where they will choose how to make a depositve
-    // for now assume they latter
-
-
-    
-    return view("main.paymentType", ["auction_ref" => "CT00000000000000"]);
-    }
+    // public function enter_attempt(Auction $auction, Request $request)
+    // {
+    //     //    to do
+    //     //   check if the user is partaking in this auction and if yes, redirect them to their live auction section
+    //     //otherwise show them a page where they will choose how to make a depositve
+    //     // for now assume they latter
+    //     return view("main.paymentType", ["auction_ref" => "CT00000000000000"]);
+    // }
 }

@@ -3,15 +3,12 @@
     action="{{ route('create_seller') }}"
     method="post"
     enctype="multipart/form-data"
->  
+>
     @CSRF
     <h1 class="text-lg text-white">Personal Details</h1>
     <div class="flex space-x-4">
-        <x-input 
-        
-        type="text" class="w-5/12" name="name" placeholder="Name" />
+        <x-input type="text" class="w-5/12" name="name" placeholder="Name" />
         <x-input
-           
             type="text"
             class="w-5/12"
             name="surname"
@@ -20,11 +17,8 @@
     </div>
 
     <div class="flex space-x-4">
-        <x-input 
-         
-        type="email" class="w-5/12" name="email" placeholder="Email" />
+        <x-input type="email" class="w-5/12" name="email" placeholder="Email" />
         <x-input
-         
             type="number"
             class="w-5/12"
             name="identity_no"
@@ -34,14 +28,12 @@
 
     <div class="flex space-x-4">
         <x-input
-         
             type="phone"
             class="w-5/12"
             name="phone"
             placeholder="Phone number"
         />
         <x-input
-         
             type="date"
             class="w-5/12"
             name="dob"
@@ -51,19 +43,28 @@
 
     <h1 class="text-lg text-white">Address</h1>
     <div class="flex space-x-4">
-        <x-input  type="text"  class="w-5/12" name="province" placeholder="Province" />
-        <x-input value="JHB" type="text" class="w-5/12" name="city" placeholder="City" />
+        <x-input
+            type="text"
+            class="w-5/12"
+            name="province"
+            placeholder="Province"
+        />
+        <x-input
+            value="JHB"
+            type="text"
+            class="w-5/12"
+            name="city"
+            placeholder="City"
+        />
     </div>
     <div class="flex space-x-4">
         <x-input
-           
             type="text"
             class="w-5/12"
             name="suburb"
             placeholder="Suburb"
         />
         <x-input
-             
             type="text"
             class="w-5/12"
             name="street"
@@ -72,14 +73,12 @@
     </div>
     <div class="flex space-x-4">
         <x-input
-           
             type="number"
             class="w-5/12"
             name="unit_no"
             placeholder="Unit number"
         />
         <x-input
-          
             type="number"
             class="w-5/12"
             placeholder="Postal code"
@@ -107,4 +106,3 @@
         Create Seller
     </button>
 </form>
-

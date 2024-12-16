@@ -16,14 +16,12 @@
             </h1>
             <div class="flex space-x-4 justify-center">
                 <x-input
-                
                     type="text"
                     class="w-5/12"
                     name="make"
                     placeholder="make"
                 />
                 <x-input
-                
                     type="text"
                     class="w-5/12"
                     name="model"
@@ -33,14 +31,12 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
-                
                     type="text"
                     class="w-5/12"
                     name="body_type"
                     placeholder="Body Type"
                 />
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="year"
@@ -50,14 +46,12 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="mileage"
                     placeholder="Mileage"
                 />
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="code"
@@ -65,12 +59,11 @@
                 />
             </div>
             <div class="flex space-x-4 justify-center">
-                 <x-select name="condition" class="w-5/12" >
+                <x-select name="condition" class="w-5/12">
                     <x-conditionsOptions />
                 </x-select>
 
                 <x-input
-                
                     type="text"
                     class="w-5/12"
                     name="colour"
@@ -79,14 +72,12 @@
             </div>
             <div class="flex space-x-4 justify-center">
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="number_of_seats"
                     placeholder="Number of seats"
                 />
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="number_of_doors"
@@ -98,14 +89,12 @@
                 Vehicle Performance
             </h1>
 
-            <div class="flex space-x-4 justify-center content-end	">
-         
-                <x-select name="fuel_type" class="w-5/12" >
+            <div class="flex space-x-4 justify-center content-end">
+                <x-select name="fuel_type" class="w-5/12">
                     <x-fuelTypeOptions />
                 </x-select>
 
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="tank_capacity"
@@ -115,14 +104,12 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
-                
                     type="text"
                     class="w-5/12"
                     name="fuel_consumption"
                     placeholder="Fuel consumption"
                 />
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="engine_capacity"
@@ -132,14 +119,12 @@
 
             <div class="flex space-x-4 justify-center">
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="cylinder_layout"
                     placeholder="Cylinder Layout"
                 />
                 <x-input
-                
                     type="number"
                     class="w-5/12"
                     name="gears"
@@ -148,14 +133,13 @@
             </div>
 
             <div class="flex space-x-4 justify-center">
-                 <x-select name="drive" class="w-5/12" >
+                <x-select name="drive" class="w-5/12">
                     <x-driveTypeOptions />
                 </x-select>
 
                 <x-input
-                
                     type="text"
-                    class="w-5/12 "
+                    class="w-5/12"
                     name="transmission"
                     placeholder="transmission"
                 />
@@ -168,7 +152,6 @@
             <div class="px-20">
                 <x-input
                     name="reserved_price"
-                
                     type="number"
                     class="w-full block"
                     placeholder="Reserved price"
@@ -179,7 +162,7 @@
                 Car Description
             </h1>
             <textarea
-                 name="description"
+                name="description"
                 value="description"
                 class="w-full h-40 bg-transparent text-white"
                 placeholder="Additional car description"

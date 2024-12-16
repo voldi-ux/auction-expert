@@ -20,8 +20,8 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-            "make" => fake()->name(),
-            "model" => fake()->name(),
+            "make" => fake()->firstName(),
+            "model" => fake()->firstName(),
             "year" => fake()->year(),
             "condition" => $this->conditions[array_rand($this->conditions)],
             "mileage" => fake()->numberBetween(100,400),

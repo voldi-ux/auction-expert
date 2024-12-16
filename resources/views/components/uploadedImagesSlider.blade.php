@@ -9,18 +9,18 @@
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
         @foreach($images as $img)
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-             <div class="h-long w-full  flex justify-center">
+            <div class="h-long w-full flex justify-center">
                 <img
-                src="/storage/{{$img->path}}"
-                class="absolute block h-full mx-auto "
-                alt="..."
-            />
-             </div>
+                    src="/storage/{{$img->path}}"
+                    class="absolute block h-full mx-auto"
+                    alt="..."
+                />
+            </div>
         </div>
         @endforeach
     </div>
     <!-- Slider indicators -->
-   
+
     <!-- Slider controls -->
     <button
         type="button"

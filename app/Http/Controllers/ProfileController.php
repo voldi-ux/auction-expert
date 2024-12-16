@@ -39,7 +39,7 @@ class ProfileController
 
         $user->profile->update($validated);
         $user->address->update($validated);
-      
+
         return
             view("main.profile", ["user" => $user])->with(["message" => "profile updated successfully"]);;
     }

@@ -21,19 +21,7 @@ class CarController
         return view("main.listings", ["listed_cars" => $listed_cars]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(VehicleRequest $request)
     {
         $validated  = $request->validated();
@@ -77,15 +65,7 @@ class CarController
         $car->save();
         return view(route("listings"));
     }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Car $car)
-    {
-        //
-    }
-
-
+    
     //returns view of all listed vehicles by the current seller
     public function listed_cars()
     {

@@ -35,7 +35,6 @@
             </div>
             <div class="text-lg font-semibold capitalize flex-1 flex flex-col">
                 <div class="whitespace-nowrap space-y-4 text-white">
-
                     @canany(["is-seller","is-buyer"])
                     <x-side-bar-link
                         icon="fas fa-home"
@@ -43,9 +42,7 @@
                         :active="request()->is('')"
                         routeName="home"
                     />
-                    @endcanany
-
-                    @canany(["is-seller","is-admin"])
+                    @endcanany @canany(["is-seller","is-admin"])
                     <x-side-bar-link
                         icon="fas fa-chart-area"
                         title="Analytics"
@@ -68,33 +65,29 @@
                         :active="request()->is('admin/listings')"
                         routeName="listings"
                     />
-                    @endcan
-                    
-                    @can("is-buyer")
-                        <x-side-bar-link
+                    @endcan @can("is-buyer")
+                    <x-side-bar-link
                         icon="fas fa-user-check"
                         title="Status"
                         :active="request()->is('buyer/status')"
                         routeName="buyer_status"
                     />
-                    
-                        <x-side-bar-link
+
+                    <x-side-bar-link
                         icon="fas fa-shipping-fast"
                         title="Your Auctions"
                         :active="request()->is('buyer/auctions-entered')"
                         routeName="entered_auctions"
                     />
-                    
-                        <x-side-bar-link
+
+                    <x-side-bar-link
                         icon="far fa-file"
                         title="Documents"
                         :active="request()->is('buyer/documents')"
                         routeName="buyer_docs"
                     />
 
-                    @endcan
-                      
-                   @can("is-seller")
+                    @endcan @can("is-seller")
                     <x-side-bar-link
                         icon="fas fa-plus"
                         title="list"
@@ -102,16 +95,13 @@
                         routeName="list_car"
                     />
 
-                   
                     <x-side-bar-link
                         icon="fas fa-list"
                         title="listed"
                         :active="request()->is('seller/listed')"
                         routeName="listed"
                     />
-                    @endcan 
-                    
-                    @can("is-admin")
+                    @endcan @can("is-admin")
                     <x-side-bar-link
                         icon="fas fa-shipping-fast"
                         title="Live Auctions"
@@ -169,7 +159,9 @@
             </div>
         </section>
         <div class="flex flex-col w-full">
-            <header class="border-0 border-b-2 border-gray py-2 px-8 h-12 w-full">
+            <header
+                class="border-0 border-b-2 border-gray py-2 px-8 h-12 w-full"
+            >
                 <div
                     class="container mx-auto text-lg text-white flex justify-between"
                 >
@@ -207,12 +199,12 @@
                                     >
                                 </li>
                                 <li>
-                                
                                     <button
-                                         form="logOutForm"
+                                        form="logOutForm"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        >Sign out</button
                                     >
+                                        Sign out
+                                    </button>
                                 </li>
                             </ul>
                         </div>

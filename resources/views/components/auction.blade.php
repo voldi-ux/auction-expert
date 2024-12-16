@@ -64,7 +64,7 @@ $increment = $auction->bid_increment;
                   <h1 class="text-white font-size ">Bid Amount  </h1>
                </div>
                 @foreach($auto_bids as $bid)   
-                <button onclick="placeBid(this)" value="{{ ($auction->getTopBid() + $bid*$auction->bid_increment) }}" auction="{{$auction->id}}" class="transition-all hover:-translate-y-2 hover:text-orange min-w-20 font-bold text-lg rounded-full text-gray color-white  auto-bid-{{$auction->id}}">
+                <button onclick="auction.quickBid(this)" value="{{ ($auction->getTopBid() + $bid*$auction->bid_increment) }}" auction="{{$auction->id}}" class="transition-all hover:-translate-y-2 hover:text-orange min-w-20 font-bold text-lg rounded-full text-gray color-white  auto-bid-{{$auction->id}}">
                      
                         R {{number_format($auction->getTopBid() + $bid*$auction->bid_increment)}}
                      
@@ -76,7 +76,7 @@ $increment = $auction->bid_increment;
       <input auction="{{$auction->id}}"  type="number"  name="bid" id="own-bid-{{$auction->id}}"  class="text-lg text-white block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
       <label for="bid" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg text-white">Enter your own amount</label>
   </div>
-             <button  onclick="bidButton()" class="border border-orange p-2 w-20 hover:scale-105 transition-all">
+             <button  onclick="auction.bidButton(this)" class="border border-orange p-2 w-20 hover:scale-105 transition-all" auction="{{$auction->id}}">
                Bid
              </button>
           </div>
@@ -87,46 +87,7 @@ $increment = $auction->bid_increment;
              
                
             //  any ele passed to this function must have two requred attributes i.e value and auction(auction_id)
-               async function placeBid(ele) {
-                 let  auctionId = ele.getAttribute("auction");
-                 let top  = document.getElementById(`top-bid-${auctionId}`)
-                 let currentTopBid = +top.getAttribute("value");
-                 let value = +ele.getAttribute("value");
-                 
-                 const numberFormat = new Intl.NumberFormat().format;
-
-                 if(currentTopBid >= value) {
-                     alert("Your Bid amount must be larger than the current top bid")
-                  return;
-                 }
-
-                 const {topBid, bids} =  await auction.placeBid(auctionId, value);
-                
-                  if(topBid) {
-                     top.innerHTML    = `R ${numberFormat(topBid)} `
-                     //somehow when the content is changed, a new text element is added since it is not needed, it must be removed
-                     top.nextElementSibling.style.display = "none";
-                     top.setAttribute("value", topBid);
-                     let auto_bids = document.querySelectorAll(`.auto-bid-${auctionId}`)
-                   
-                     for(let i = 1; i <= auto_bids.length; i++) {
-                        let bidEle = auto_bids[i - 1]; // the nodelist is index based, while the bids aren't
-                        let value = bids[i];
-                        bidEle.innerHTML =  `R ${numberFormat(value)} `;
-                        bidEle.setAttribute("value", value);
-                   
-
-                     }
-                  }
-
-
-               }
-
-               function bidButton() {
-                 let ele = document.getElementById("own-bid-{{$auction->id}}");
-                 ele.setAttribute("value", ele.value)
-                 placeBid(ele);
-               }
+              
             </script>
    
 

@@ -1,7 +1,4 @@
-@php
- $msg = "No similar auction";
-@endphp
-
+@php $msg = "No similar auction"; @endphp
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -32,22 +29,20 @@
             </div>
 
             <div class="space-x-4">
-                     @guest
-                       <a
-                        class="text-lg hover:text-orange transition-all"
-                        href="/login"
-                        >Login</a
-                    >
-                    <a
-                        class="text-lg hover:text-orange transition-all"
-                        href="/register"
-                        >Register</a
-                    >
-                   @endguest
-
-                   @auth
-                     <x-authDropdown />
-                   @endauth
+                @guest
+                <a
+                    class="text-lg hover:text-orange transition-all"
+                    href="/login"
+                    >Login</a
+                >
+                <a
+                    class="text-lg hover:text-orange transition-all"
+                    href="/register"
+                    >Register</a
+                >
+                @endguest @auth
+                <x-authDropdown />
+                @endauth
             </div>
 
             <div class="space-x-4">
@@ -112,46 +107,48 @@
 
             <div class="flex">
                 <div class="flex-1 mr-8 h-long gradient2">
-                    <x-carViewSlider  :car="$auction->car"/>
+                    <x-carViewSlider :car="$auction->car" />
                 </div>
                 <div class="w-80 h-min gradient2 p-4 space-y-8">
                     <div
-                        class="flex px-2  border-b-2 border-white items-center pb-1"
+                        class="flex px-2 border-b-2 border-white items-center pb-1"
                     >
                         <h1 class="tex-lg text-white font-semibold">
-                            {{$auction->car->make}}  
+                            {{$auction->car->make}}
                             {{$auction->car->model}}
                         </h1>
-                        
                     </div>
 
                     <div class="p-2 gradient3 text-center rounded-lg">
                         @if($auction->status == "scheduled")
-                          <h1 class="text-3xl text-white font-semibold py-4 ">
+                        <h1 class="text-3xl text-white font-semibold py-4">
                             Starts Soon
-                          </h1>
+                        </h1>
                         @else
                         <h1 class="text-lg text-white">Top Bid</h1>
-                          @if($auction->getTopBid() > 0) 
-                            <h1 class="text-3xl text-white font-bold ">
-                            R  {{number_format($auction->getTopBid())}}
+                        @if($auction->getTopBid() > 0)
+                        <h1 class="text-3xl text-white font-bold">
+                            R {{number_format($auction->getTopBid())}}
                         </h1>
-                        @else 
-                        <h1 class="text-3xl text-white font-bold ">
-                         NO BIDS
-                    </h1>
-                          @endif
-                        @endif
+                        @else
+                        <h1 class="text-3xl text-white font-bold">NO BIDS</h1>
+                        @endif @endif
                     </div>
 
-                    <div class="flex justify-between px-2 text-white items-center">
+                    <div
+                        class="flex justify-between px-2 text-white items-center"
+                    >
                         <div class="text-center">
                             <h1 class="text-lg">Time remaining</h1>
-                            <h1 class="text-sm">{{$auction->remainingTimeFormated()}}</h1>
+                            <h1 class="text-sm">
+                                {{$auction->remainingTimeFormated()}}
+                            </h1>
                         </div>
                         <div class="text-center">
                             <h1 class="text-lg">Closing date</h1>
-                            <h1 class="text-xs">{{$auction->formatedEndtime()}}</h1>
+                            <h1 class="text-xs">
+                                {{$auction->formatedEndtime()}}
+                            </h1>
                         </div>
                     </div>
 
@@ -175,54 +172,47 @@
                             <h1 class="text-white">Transmission</h1>
                         </div>
 
-                        <h1 class="text-gray">{{$auction->car->transmission}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->transmission}}
+                        </h1>
                     </div>
-                         
+
                     <div class="flex justify-between px-2">
                         <div>
                             <h1 class="text-white">Starting Bid Amount</h1>
                         </div>
 
-                        <h1 class="text-gray">R  {{number_format($auction->start_bid_amount)}}</h1>
+                        <h1 class="text-gray">
+                            R {{number_format($auction->start_bid_amount)}}
+                        </h1>
                     </div>
-                         
-                 
-                     <!-- To do
+
+                    <!-- To do
                       A seller should not see this, only  
                      
                      -->
-                      
-                     @guest
-                     <button
-                      id="bid-btn"
-                     class="p-2 flex justify-center items-center w-full bg-dark1 rounded-lg text-lg text-white"
-                     >
-                     
-                     Login To Make Bids
-                 </button>                 
-                    @endguest
 
-
-                    @auth 
-                      
-                    @can("is-buyer")
-                     
-                        @csrf
-                        <button
-                        data-drawer-target="drawer-payment-type" data-drawer-show="drawer-payment-type" data-drawer-placement="bottom" aria-controls="drawer-payment-type"
+                    @guest
+                    <button
+                        id="bid-btn"
+                        class="p-2 flex justify-center items-center w-full bg-dark1 rounded-lg text-lg text-white"
+                    >
+                        Login To Make Bids
+                    </button>
+                    @endguest @auth @can("is-buyer") @csrf
+                    <button
+                        data-drawer-target="drawer-payment-type"
+                        data-drawer-show="drawer-payment-type"
+                        data-drawer-placement="bottom"
+                        aria-controls="drawer-payment-type"
                         class="p-2 flex justify-center items-center w-full gradient4 rounded-lg text-lg text-white"
-                        >
+                    >
                         Place A Bid
                     </button>
 
                     <x-paymentType :auction="$auction" />
-                      
-                    
-                    @endcan
 
-                    @endauth
-
-                     
+                    @endcan @endauth
 
                     <x-accordion />
                 </div>
@@ -271,16 +261,19 @@
                         <h1 class="text-white">Colour</h1>
                         <h1 class="text-gray">{{$auction->car->Colour}}</h1>
                     </div>
-                    
+
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Number Of Seats</h1>
-                        <h1 class="text-gray">{{$auction->car->number_of_seats}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->number_of_seats}}
+                        </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Number Of Doors</h1>
-                        <h1 class="text-gray">{{$auction->car->number_of_doors}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->number_of_doors}}
+                        </h1>
                     </div>
-
                 </div>
                 <div class="w-1/2 p-4">
                     <h1 class="text-white font-bold text-2xl mb-8">
@@ -292,19 +285,27 @@
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Fuel Tank Capacity</h1>
-                        <h1 class="text-gray">{{$auction->car->tank_capacity}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->tank_capacity}}
+                        </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Fuel Consumption</h1>
-                        <h1 class="text-gray">{{$auction->car->fuel_consumption}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->fuel_consumption}}
+                        </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Engine Capacity</h1>
-                        <h1 class="text-gray">{{$auction->car->engine_capacity}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->engine_capacity}}
+                        </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Cylinder Layout</h1>
-                        <h1 class="text-gray">{{$auction->car->cylinder_layout}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->cylinder_layout}}
+                        </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Gears</h1>
@@ -316,21 +317,23 @@
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Car Transmission</h1>
-                        <h1 class="text-gray">{{$auction->car->transmission}}</h1>
+                        <h1 class="text-gray">
+                            {{$auction->car->transmission}}
+                        </h1>
                     </div>
                 </div>
             </div>
-             <div class="flex">
+            <div class="flex">
                 <div class="w-1/2">
-                  <h1 class="text-white font-bold text-2xl mb-8 text-center">
-                Car Description
-            </h1>
-            <p class="text-white">
-                {{$auction->car->description}}
-            </p>
+                    <h1 class="text-white font-bold text-2xl mb-8 text-center">
+                        Car Description
+                    </h1>
+                    <p class="text-white">
+                        {{$auction->car->description}}
+                    </p>
                 </div>
                 <div></div>
-             </div>
+            </div>
         </section>
 
         <section class="container mx-auto mb-20">
@@ -338,12 +341,12 @@
                 <h1 class="text-3xl text-white font-semibold">Similar Cars</h1>
             </div>
 
-            <div class="flex flex-wrap gap-8 ">
-              @forelse ($similar as $auction)
-            <x-card.live  :auction="$auction"/>
-            @empty
-            <x-nothingToShow :msg="$msg" />
-            @endforelse
+            <div class="flex flex-wrap gap-8">
+                @forelse ($similar as $auction)
+                <x-card.live :auction="$auction" />
+                @empty
+                <x-nothingToShow :msg="$msg" />
+                @endforelse
             </div>
         </section>
         <div class="gradient2 text-white">
@@ -372,13 +375,13 @@
         <script>
             let ele = document.getElementById("bid-btn");
 
-            ele.addEventListener("click", function() {
-                //    <!-- 
+            ele.addEventListener("click", function () {
+                //    <!--
                 //        To do
                 //        1) make an http request to  check if the buyer is already particiapting in the current auction
                 //        2) if two, holds then we redirect to their auctions page
                 //      -->
-            })
+            });
         </script>
     </body>
 </html>
