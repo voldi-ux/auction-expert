@@ -2,7 +2,7 @@ import axios from "axios";
 
 class AuctionManager {
     async placeBid(auctionId, amount) {
-        let answ = prompt("Are you sure you want to bid " + "R " + amount);
+        let answ = confirm("Are you sure you want to bid " + "R " + amount);
         if (answ) {
             try {
                 let res = await axios.post(`/buyer/place-bid/${auctionId}`, {
