@@ -2,12 +2,12 @@
 
 <!-- dev purposes -->
 @php
-$nums = array_map(fn() => rand(0,8), range(1,30));
+$increment = $auction->bid_increment;
 @endphp
            <div class="flex flex-col p-2  relative h-full  p-8 bg-center bg-cover  bg-hero ">
               <div class="flex justify-between">
               <div class="text-lg font-semibold">
-                <h1 class="text-orange-500">
+                <h1 class="text-orange">
                     Time remaing
                 </h1>
                 <h1 class="text-white">
@@ -15,13 +15,21 @@ $nums = array_map(fn() => rand(0,8), range(1,30));
                 </h1>
               </div>
               <div class="text-lg font-semibold">
-                <h1 class="text-orange-500" >
+                <h1 class="text-orange">
+                    Bid Increment
+                </h1>
+                <h1 class="text-white">
+                    R {{number_format($increment)}}
+                </h1>
+              </div>
+              <div class="text-lg font-semibold">
+                <h1 class="text-orange" >
                     Top Bid Amount
                 </h1>
                 <h1  id="top-bid-{{$auction->id}}" value="{{$auction->getTopBid()}}" class="text-white">
                       @if($auction->getTopBid() > 0) 
                             <h1 class="text text-white font-bold ">
-                            R {{$auction->getTopBid()}}
+                            R {{number_format($auction->getTopBid())}}
                         </h1>
                         @else 
                         <h1 class="text-3xl text-white font-bold ">
@@ -56,9 +64,9 @@ $nums = array_map(fn() => rand(0,8), range(1,30));
                   <h1 class="text-white font-size ">Bid Amount  </h1>
                </div>
                 @foreach($auto_bids as $bid)   
-                <button onclick="placeBid(this)" value="{{ ($auction->getTopBid() + $bid*$auction->bid_increment) }}" auction="{{$auction->id}}" class="transition-all hover:-translate-y-2 hover:text-orange-500 min-w-20 font-bold rounded-full text-white color-white  auto-bid-{{$auction->id}}">
+                <button onclick="placeBid(this)" value="{{ ($auction->getTopBid() + $bid*$auction->bid_increment) }}" auction="{{$auction->id}}" class="transition-all hover:-translate-y-2 hover:text-orange min-w-20 font-bold text-lg rounded-full text-gray color-white  auto-bid-{{$auction->id}}">
                      
-                        R {{$auction->getTopBid() + $bid*$auction->bid_increment}}
+                        R {{number_format($auction->getTopBid() + $bid*$auction->bid_increment)}}
                      
                 </button>
                 @endforeach
@@ -74,11 +82,7 @@ $nums = array_map(fn() => rand(0,8), range(1,30));
           </div>
            </div>
      
-            @php
-            
-            $increment = $auction->bid_increment;
           
-            @endphp
             <script>
              
                
@@ -89,6 +93,8 @@ $nums = array_map(fn() => rand(0,8), range(1,30));
                  let currentTopBid = +top.getAttribute("value");
                  let value = +ele.getAttribute("value");
                  
+                 const numberFormat = new Intl.NumberFormat().format;
+
                  if(currentTopBid >= value) {
                      alert("Your Bid amount must be larger than the current top bid")
                   return;
@@ -97,7 +103,7 @@ $nums = array_map(fn() => rand(0,8), range(1,30));
                  const {topBid, bids} =  await auction.placeBid(auctionId, value);
                 
                   if(topBid) {
-                     top.innerHTML    = `R ${topBid} `
+                     top.innerHTML    = `R ${numberFormat(topBid)} `
                      //somehow when the content is changed, a new text element is added since it is not needed, it must be removed
                      top.nextElementSibling.style.display = "none";
                      top.setAttribute("value", topBid);
@@ -106,9 +112,9 @@ $nums = array_map(fn() => rand(0,8), range(1,30));
                      for(let i = 1; i <= auto_bids.length; i++) {
                         let bidEle = auto_bids[i - 1]; // the nodelist is index based, while the bids aren't
                         let value = bids[i];
-                        bidEle.innerHTML =  `R ${value} `;
+                        bidEle.innerHTML =  `R ${numberFormat(value)} `;
                         bidEle.setAttribute("value", value);
-                        console.log(bidEle)
+                   
 
                      }
                   }

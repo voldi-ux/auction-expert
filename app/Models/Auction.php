@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Auction extends Model
 {
-    //
+  //
+
+  use HasFactory;
 
    protected $fillable = ["status", "creator_id", 
    "bid_increment", 
@@ -45,12 +48,14 @@ class Auction extends Model
   }
   //  utils 
   public function remainingTimeFormated() {
+
+
         $start = Carbon::now(); $end = Carbon::parse($this->end_date); 
         $days = floor($start->diffInDays($end));
         $hours = $start->diffInHours($end) % 24; 
-        $minutes = $start->diffInMinutes($end);
+        $minutes = $start->diffInMinutes($end) % 60;
         
-        return "".$days."d"." ".$hours."h"." ".$days."m";
+        return "".$days."d"." ".$hours."h"." ".$minutes."m";
   }
 
 

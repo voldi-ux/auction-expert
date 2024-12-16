@@ -8,10 +8,10 @@
     <h1 class="text-lg text-white">Personal Details</h1>
     <div class="flex space-x-4">
         <x-input 
-          value="voldi"
+        
         type="text" class="w-5/12" name="name" placeholder="Name" />
         <x-input
-             value="voldi"
+           
             type="text"
             class="w-5/12"
             name="surname"
@@ -21,10 +21,10 @@
 
     <div class="flex space-x-4">
         <x-input 
-           value="voldi@gmail.com"
+         
         type="email" class="w-5/12" name="email" placeholder="Email" />
         <x-input
-            value="2"
+         
             type="number"
             class="w-5/12"
             name="identity_no"
@@ -34,14 +34,14 @@
 
     <div class="flex space-x-4">
         <x-input
-         value="0629114175"
+         
             type="phone"
             class="w-5/12"
             name="phone"
             placeholder="Phone number"
         />
         <x-input
-             value="2024/11/12"
+         
             type="date"
             class="w-5/12"
             name="dob"
@@ -51,19 +51,19 @@
 
     <h1 class="text-lg text-white">Address</h1>
     <div class="flex space-x-4">
-        <x-input  type="text" value="Gauteng" class="w-5/12" name="province" placeholder="Province" />
+        <x-input  type="text"  class="w-5/12" name="province" placeholder="Province" />
         <x-input value="JHB" type="text" class="w-5/12" name="city" placeholder="City" />
     </div>
     <div class="flex space-x-4">
         <x-input
-           value="Auckland Park"
+           
             type="text"
             class="w-5/12"
             name="suburb"
             placeholder="Suburb"
         />
         <x-input
-             value="Richmond Ave"
+             
             type="text"
             class="w-5/12"
             name="street"
@@ -72,14 +72,14 @@
     </div>
     <div class="flex space-x-4">
         <x-input
-             value="3034"
+           
             type="number"
             class="w-5/12"
             name="unit_no"
             placeholder="Unit number"
         />
         <x-input
-            value="3034"
+          
             type="number"
             class="w-5/12"
             placeholder="Postal code"

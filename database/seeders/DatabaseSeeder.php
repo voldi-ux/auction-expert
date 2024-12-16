@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Models\Car;
+use App\Models\Image;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\VehicleFile;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,52 +18,27 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // define the different 
+        // define the different roles
         Role::create(["name"=> "Admin"]);
         Role::create(["name"=> "Seller"]);
         Role::create(["name"=> "Buyer"]);
 
-        // User::factory(10)->create();
-
-         
-         //create fake accounts
-        for($i = 0; $i < 5; $i++) {
-            User::factory()->create([
-                'name' =>  fake()->name(),
-                'email' =>  fake()->email(),
-                "password" => "123456789"
-            ]);            
-        }
-
-
-        $users = User::all();
-    
-        // randomly assign roles
-        foreach($users as $user) {
-                    $user->roles()->attach(rand(1,3));
-        }
-
-
-        $data = ['name'=> "Admin", "email"=> "admin@expert.co.za", "password" => "123456789"];
-        $user =  User::create($data);
-        $user->roles()->attach(1);
+        $sellers = User::factory()->count(10)->hasProfile()->hasAddress()->create();
+        $buyers = User::factory()->count(10)->hasProfile()->hasAddress()->create();
         
-        $user = User::create(['name'=> "voldi", "email"=> "voldimuyumba57@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(2); // selller
-        
-        $user = User::create(['name'=> "john", "email"=> "johnmuyumba57@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(3); // buyer
+        foreach($sellers as $seller) {
+            $seller->roles()->attach(2); // assign roles of sellers
+            //for each seller, create 10 cars with 5 images, vehicle docs and a single auction
+            $cars = Car::factory()->count(10)->has(Image::factory()->count(5))->has(VehicleFile::factory()->count(5))->hasAuction()->for($seller)->create();
+        };
 
-
-        $user = User::create(['name'=> "user1", "email"=> "user1@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(3);
-        $user = User::create(['name'=> "user2", "email"=> "user2@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(3);
-        $user = User::create(['name'=> "user3", "email"=> "user3@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(3);
-        $user = User::create(['name'=> "user4", "email"=> "user4@gmail.com", "password" => "123456789"]);
-        $user->roles()->attach(3);
+        foreach($buyers as $buyer) {
+            $buyer->roles()->attach(3); // assigne roles of buyer
+        };
 
         
+        $admin = User::factory()->hasProfile()->hasAddress()->create(["email" => "admin@auctionexpert.co.za"]);
+        $admin->roles()->attach(1);
+                
     }
 }

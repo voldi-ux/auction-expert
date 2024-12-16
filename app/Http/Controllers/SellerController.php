@@ -33,7 +33,7 @@ class SellerController
     }
     //
     public function sellers() {
-        $sellers = User::with("profile")->paginate(5);
+        $sellers = User::with("profile")->paginate(8);
         return view("main.users", ["sellers" => $sellers]);
     }
 

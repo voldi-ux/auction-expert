@@ -32,7 +32,10 @@ class BuyerController
 
 
     public function pay_deposit(Auction $auction, Request $request) {
-        $stripePriceId = 'price_1QVzeZLGGMwO7DWSDxIDkU77';
+
+        if($request->user()->is_in_auction($auction->id)) return redirect(route("entered_auctions"));
+
+        $stripePriceId = env("DEPOSIT_STRIPE_ID");
         // to do
         // make sure the auction is still active before they can deposit
         //proceed iff its active otherwise redirect the client back to home with a message

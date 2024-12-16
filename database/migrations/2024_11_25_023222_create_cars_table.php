@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("mileage");
             $table->string("body_type");
             $table->string("colour");
-            $table->string("description");
+            $table->longText("description");
             $table->string("transmission");
             $table->string("fuel_consumption");
             $table->string("drive");

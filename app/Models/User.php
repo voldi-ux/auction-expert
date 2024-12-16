@@ -72,7 +72,12 @@ class User extends Authenticatable
     public function roles() : BelongsToMany {
         return $this->belongsToMany(Role::class);
     }
-
+     
+    //check if the user is currently partaking in the auction with the given id
+    public function is_in_auction($auction_id) {
+       $auction = $this->auctions()->find($auction_id);
+      return $auction == null ? false : true;
+    }
 
     //the auctions the user has is currently participating in
     public function auctions() : BelongsToMany {

@@ -41,5 +41,8 @@
             <x-nothingToShow :msg="$msg" />
             @endforelse
         </div>
+           <div class="flex justify-center my-8">
+                {{$live_auctions->links()}}
+           </div>
     </section>
 </x-app-layout>

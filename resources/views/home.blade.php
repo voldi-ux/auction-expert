@@ -124,16 +124,20 @@
             <x-nothingToShow :msg="$msg" />
             @endforelse
             </div>
+
+            <div class="flex justify-center my-8">
+                {{$live_auctions->links()}}
+           </div>
            
         </section>
 
         <section class="container mx-auto mb-20">
             <div class="flex justify-between mb-20">
-                <h1 class="text-3xl text-white font-semibold">Scheduled Auctions</h1>
+                <h1 class="text-3xl text-white font-semibold">Upcoming Auctions</h1>
                 <a class="text-lg text-orange" href="/scheduled-auctions">See All</a>
             </div>
 
-            <div class="flex flex-wrap space-x-8">
+            <div class="flex flex-wrap  gap-8 ">
            @forelse ($scheduled as $auction)
             <x-card.scheduled  :auction="$auction"/>
             @empty

@@ -16,7 +16,7 @@ class AuctionController
      */
     public function get_all_running_auctions()
     {
-        $auctions = Auction::with(["car", "bids"])->where("status", "active")->paginate(4);
+        $auctions = Auction::with(["car", "bids"])->where("status", "active")->paginate(8);
         
         return view("main.runningAuctions", ['live_auctions' => $auctions]);
     }
@@ -34,7 +34,7 @@ class AuctionController
     
     // get all the scheduled auctions for admin to view and ponential manage
     public function get_scheduled_auctions() {
-        $auctions = Auction::with(["car"])->where("status", "scheduled")->paginate(4);
+        $auctions = Auction::with(["car"])->where("status", "scheduled")->paginate(8);
         return view("main.scheduled", ['scheduled_auctions' => $auctions]);
     }
 
@@ -42,8 +42,8 @@ class AuctionController
     // returns live auctions for all users
     public function home()
     {
-        $auctions = Auction::with(["car"])->where("status", "active")->paginate(4);
-        $scheduled = Auction::with(["car"])->where("status", "scheduled")->latest()->limit(4)->get();
+        $auctions = Auction::with(["car"])->where("status", "active")->paginate(8);
+        $scheduled = Auction::with(["car"])->where("status", "scheduled")->latest()->limit(8)->get();
         return view("home", ['live_auctions' => $auctions, "scheduled" => $scheduled]);
     }
 

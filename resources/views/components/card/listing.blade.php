@@ -2,15 +2,17 @@
 
 
 
-<x-modal modal_id="listing-process-modal"  title="Process Listing"> 
+<x-modal modal_id="listing-process-modal-{{$car->id}}"  title="Process Listing"> 
      <x-processListedModal :car="$car" />
 </x-modal>
-<x-modal modal_id="listing-process-view-modal"  title="Uploaded Vehicle Information">
+<x-modal modal_id="listing-process-view-modal-{{$car->id}}"  title="Uploaded Vehicle Information">
    <x-uploadedVehicleInfo :car="$car" />    
 </x-modal>
-<x-modal modal_id="listing-images-view-modal"  title="Uploaded Vehicle Images">
+<x-modal modal_id="listing-images-view-modal-{{$car->id}}"  title="Uploaded Vehicle Images">
    <x-uploadedImagesSlider :images="$car->images" />    
 </x-modal>
+
+
 <div class="w-80 min-h-90 gradient2 p-2 rounded-lg space-y-4 pb-8 transition-all hover:scale-105">
     <div class="bg-white rounded-lg">
         <!-- make the image clickable to go the next view of the auction -->
@@ -42,22 +44,23 @@
         <h1 class="text-gray">{{$car->transmission}}</h1>
     </div>
     <button
-        data-modal-target="listing-process-view-modal"
-        data-modal-toggle="listing-process-view-modal"
+        data-modal-target="listing-process-view-modal-{{$car->id}}"
+        data-modal-toggle="listing-process-view-modal-{{$car->id}}"
         class="text-center p-2  w-full text-white font-bold"
     >
          View uploaded information
+
     </button>
           <button
             class="text-center p-2  w-full text-white font-bold"
-             data-modal-target="listing-images-view-modal"
-             data-modal-toggle="listing-images-view-modal"
+             data-modal-target="listing-images-view-modal-{{$car->id}}"
+             data-modal-toggle="listing-images-view-modal-{{$car->id}}"
             >View uploaded Images</button>
 
     <div class="px-2 flex justify-center space-x-2">
         <button
-            data-modal-target="listing-process-modal"
-            data-modal-toggle="listing-process-modal"
+            data-modal-target="listing-process-modal-{{$car->id}}"
+            data-modal-toggle="listing-process-modal-{{$car->id}}"
             class="gradient3 text-center p-2 text-lg w-full text-white font-bold"
         >
             Process

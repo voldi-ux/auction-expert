@@ -19,11 +19,11 @@
     <div class="flex flex-col px-2 items-center justify-center">
         <h1 class="text-white">Top Bid</h1>
            @if($auction->getTopBid() > 0) 
-                            <h1 class="text-3xl text-white font-bold ">
+                            <h1 class="text-3xl text-orange font-bold ">
                             R  {{number_format($auction->getTopBid())}}
                         </h1>
                         @else 
-                        <h1 class="text-3xl text-white font-bold ">
+                        <h1 class="text-3xl text-orange font-bold ">
                          NO BIDS
                     </h1>
                           @endif

@@ -35,7 +35,29 @@
             <h1>
                 Banking Details
             </h1>
-            <div class="h-40 border-2 border-gray">
+            <div class=" border-2  border-gray w-long p-4">
+               <div class="flex justify-between">
+                  <h1 class="text-lg text-white font-bold">Account Name</h1>
+                  <h1 class="text-lg text-gray">Auction Expert</h1>
+               </div>
+               <div class="flex justify-between">
+                  <h1 class="text-lg text-white font-bold">Bank</h1>
+                  <h1 class="text-lg text-gray">First National Bank (FNB)</h1>
+               </div>
+               <div class="flex justify-between">
+                  <h1 class="text-lg text-white font-bold">Account Type</h1>
+                  <h1 class="text-lg text-gray">Checque</h1>
+               </div>
+               <div class="flex justify-between">
+                  <h1 class="text-lg text-white font-bold">Branch Code</h1>
+                  <h1 class="text-lg text-gray">393988</h1>
+               </div>
+               
+               <div class="flex justify-between">
+                  <h1 class="text-lg text-white font-bold">Reference</h1>
+                  <h1 class="text-lg text-gray">{{$auction_ref}}</h1>
+               </div>
+
 
             </div>
          </div>

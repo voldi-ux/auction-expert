@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Http\Client\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Client\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Car extends Model
 {
+
+  use HasFactory;
+
   protected  $fillable = [
     "make",
     "model",
@@ -31,7 +35,8 @@ class Car extends Model
     "cylinder_layout",
     "reserved_price",
     "transmission",
-    "fuel_consumption"
+    "fuel_consumption",
+    "status"
   ];
 
 
@@ -55,6 +60,13 @@ class Car extends Model
   }
 
   public function docs(): HasMany
+  {
+    return $this->hasMany(VehicleFile::class);
+  }
+
+  //This is needed for seeding only.
+  //
+  public function vehicleFile(): HasMany
   {
     return $this->hasMany(VehicleFile::class);
   }

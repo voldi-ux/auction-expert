@@ -28,7 +28,7 @@
         class="font-sans flex antialiased myBg h-screen w-screen"
     >
         <section
-            class="min-w-40 h-full px-8 py-2 flex flex-col border-0 border-r-2"
+            class="min-w-40 h-full px-8 py-2 flex flex-col border-0 border-r-2 border-gray"
         >
             <div>
                 <img src="/storage/images/logo.png" class="w-24 mx-auto" />
@@ -169,7 +169,7 @@
             </div>
         </section>
         <div class="flex flex-col w-full">
-            <header class="border-0 border-b-2 py-2 px-8 h-12 w-full">
+            <header class="border-0 border-b-2 border-gray py-2 px-8 h-12 w-full">
                 <div
                     class="container mx-auto text-lg text-white flex justify-between"
                 >

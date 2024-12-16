@@ -1,7 +1,7 @@
 
 /public/identities
 /public/vehicle-docs
-/public/vehicle-images
+
 
 !private/
 !.gitignore

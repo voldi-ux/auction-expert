@@ -17,7 +17,7 @@ class CarController
     public function index()
     {
         //
-        $listed_cars = Car::with(["images", "docs"])->where("status", "pending")->paginate(4);
+        $listed_cars = Car::with(["images", "docs"])->where("status", "pending")->paginate(8);
         return view("main.listings", ["listed_cars" => $listed_cars]);
     }
 
@@ -89,7 +89,7 @@ class CarController
     //returns view of all listed vehicles by the current seller
     public function listed_cars()
     {
-        $cars = Car::where("user_id", Auth::user()->id)->paginate(4);
+        $cars = Car::where("user_id", Auth::user()->id)->paginate(8);
         return view("main.listedAuctions", ["cars" => $cars]);
     }
 
