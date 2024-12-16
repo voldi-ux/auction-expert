@@ -11,10 +11,10 @@
 
 -   Create an env file using the provided example
 -   Specify your sql credential in the env file
--   Add your stripe api key to the env file together with the stripe price id for deposite
--   Run the database migration command
--   Seed the database using artsian the command
--   Start the work queue using ```bash php artisan queue:work```
--   Create a storage symbolic using the command ```bash php artisan storage:link ```
--   Run ```bash npm run dev ```
--   Start the program by running ```bash php artisan serve ```
+-   Add your stripe api keys to the env file together with the stripe price id for deposite
+-   Run the database migration command ```php artisan migrate:fresh```
+-   Seed the database using artsian command ```php artisan db:seed```
+-   Start the work queue using ```php artisan queue:work```
+-   Create a storage symbolic using the command ``` php artisan storage:link ```
+-   Run ``` npm run dev ```
+-   Start the program by running ```php artisan serve ```
