@@ -34,7 +34,9 @@
                 <img src="/storage/images/logo.png" class="w-24 mx-auto" />
             </div>
             <div class="text-lg font-semibold capitalize flex-1 flex flex-col">
-                <div class="whitespace-nowrap space-y-4 text-white">
+                <div
+                    class="whitespace-nowrap flex flex-col space-y-4 text-white"
+                >
                     @canany(["is-seller","is-buyer"])
                     <x-side-bar-link
                         icon="fas fa-home"
@@ -49,11 +51,7 @@
                         :active="request()->is('app/analytic')"
                         routeName="analytics"
                     />
-                    @endcanany
-
-    
-
-                    @can("is-admin")
+                    @endcanany @can("is-admin")
                     <x-side-bar-link
                         icon="fas fa-list"
                         title="listing"
@@ -160,14 +158,15 @@
                 <div
                     class="container mx-auto text-lg text-white flex justify-between"
                 >
-                    <button class="space-x-4">
-                       <i class="fas fa-download"></i>
-                        <span>
-                            Downlaod Report
-                        </span>
+                    @if(request()->is('app/analytic'))
+                    <button class="space-x-4 transition-all hover:text-yellow-600 hover:scale-105">
+                        <i class="fas fa-download"></i>
+                        <span> Downlaod Report </span>
                     </button>
+                     @else
+                     <span></span>
+                    @endif
                     <div class="space-x-8 text-white">
-                      
                         <button
                             data-dropdown-toggle="auth_dropdown"
                             class="transition-all hover:text-yellow-600 space-x-4"
@@ -175,9 +174,10 @@
                             <i class="fas fa-user"></i>
 
                             <span>
-                                 {{auth()->user()->name}}
+                                {{auth()->user()->name}}
                             </span>
                         </button>
+
                         <div
                             id="auth_dropdown"
                             class="z-10 hidden gradient2 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"

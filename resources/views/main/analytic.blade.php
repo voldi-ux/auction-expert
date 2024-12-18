@@ -45,7 +45,9 @@
                 ></canvas>
             </div>
             <div class="h-full w-full col-span-4 p-2 rounded-lg gradient2">
-                <canvas id="auctions_propotions"></canvas>
+                <canvas
+                  style="width: 100%; height: 100%"
+                id="auctions_propotions"></canvas>
             </div>
         </div>
 
