@@ -8,6 +8,12 @@ use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyticController;
 use App\Http\Controllers\BuyerController;
+use Spatie\LaravelPdf\Facades\Pdf;
+
+
+
+
+
 
 
 //geenral

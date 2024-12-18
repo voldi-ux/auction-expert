@@ -51,12 +51,7 @@
                     />
                     @endcanany
 
-                    <x-side-bar-link
-                        icon="fas fa-bell"
-                        title="Notifications"
-                        :active="request()->is('app/notifications')"
-                        routeName="notifications"
-                    />
+    
 
                     @can("is-admin")
                     <x-side-bar-link
@@ -165,16 +160,23 @@
                 <div
                     class="container mx-auto text-lg text-white flex justify-between"
                 >
-                    <span></span>
+                    <button class="space-x-4">
+                       <i class="fas fa-download"></i>
+                        <span>
+                            Downlaod Report
+                        </span>
+                    </button>
                     <div class="space-x-8 text-white">
-                        <button class="transition-all hover:text-yellow-600">
-                            <i class="fas fa-bell"></i>
-                        </button>
+                      
                         <button
                             data-dropdown-toggle="auth_dropdown"
-                            class="transition-all hover:text-yellow-600"
+                            class="transition-all hover:text-yellow-600 space-x-4"
                         >
                             <i class="fas fa-user"></i>
+
+                            <span>
+                                 {{auth()->user()->name}}
+                            </span>
                         </button>
                         <div
                             id="auth_dropdown"

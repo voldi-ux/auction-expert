@@ -7,7 +7,9 @@
         {{auth()->user()->name}}
     </span>
 </button>
+
 <div
+
     id="auth_dropdown"
     class="z-10 hidden gradient2 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
 >

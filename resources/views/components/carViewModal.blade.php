@@ -15,6 +15,7 @@
                 class="md:w-3/5 block mx-auto"
             />
         </div>
+
         <div class="flex space-x-4 items-center justify-center">
             @foreach($images as $img)
             <button
