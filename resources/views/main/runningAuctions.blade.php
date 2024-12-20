@@ -2,21 +2,18 @@
 @endphp
 
 <x-app-layout>
-    <x-drawer
-        drawer_id="live-auction-filter-drawer"
-        title="Advanced Filtering"
-    />
-    <header
+    <x-drawer drawer_id="live-auction-filter-drawer" title="Advanced Filtering">
+        <form action="/" class="h-full">
+            <x-advancedSearch />
+        </form>
+    </x-drawer>
+       <header
         class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat p-8"
     >
-        <x-searchBar placeholder="Search make, model, etc..." />
+        <x-searchBar.main></x-searchBar.main>
 
         <div class="flex items-center space-x-4">
-            <h1 class="text-lg text-white">Sort Order</h1>
-            <div class="space-x-4 flex-1">
-                <x-tag title="Newly listed first" />
-                <x-tag title="Oldest first" />
-            </div>
+            <div class="space-x-4 flex-1"></div>
             <span>
                 <button
                     class="border-2 p-1 border-gray text-white"

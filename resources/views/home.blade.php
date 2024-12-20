@@ -25,6 +25,9 @@
     </head>
     <body class="font-sans myBg">
         <x-drawer drawer_id="home-filter-drawer" title="Advanced Drawer">
+             <form action="/" class="h-full">
+                 <x-advancedSearch />
+             </form>
         </x-drawer>
 
         <div class="flex flex-col">
@@ -66,26 +69,9 @@
                 </div>
             </nav>
             <header
-                class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat"
+                class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')]  bg-center bg-contain bg-no-repeat"
             >
-                <x-searchBar placeholder="Search make, model, etc..." />
-
-                <div class="flex items-center space-x-4">
-                    <h1 class="text-lg text-white">Car Condition</h1>
-                    <div class="space-x-4">
-                        <x-tag title="All" />
-                        <x-tag title="New" />
-                        <x-tag title="Used" />
-                        <x-tag title="Fair" />
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <h1 class="text-lg text-white">Sort Order</h1>
-                    <div class="space-x-4">
-                        <x-tag title="Newly listed first" />
-                        <x-tag title="Oldest first" />
-                    </div>
-                </div>
+              <x-searchBar.main ></x-searchBar.main>
             </header>
         </div>
 

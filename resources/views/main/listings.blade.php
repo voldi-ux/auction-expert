@@ -3,26 +3,18 @@
 @endif @php $msg = "There’s currently no new car available. Please check back
 later."; @endphp
 <x-app-layout>
-    <x-drawer drawer_id="listing-filter-drawer" title="Advanced Filtering" />
+    <x-drawer drawer_id="listing-filter-drawer" title="Advanced Filtering">
+        <form action="/" class="h-full">
+            <x-advancedSearch />
+        </form>
+    </x-drawer>
     <header
         class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat p-8"
     >
-        <x-searchBar placeholder="Search make, model, etc..." />
+        <x-searchBar.main></x-searchBar.main>
 
         <div class="flex items-center space-x-4">
-            <h1 class="text-lg text-white">Sort Order</h1>
-            <div class="space-x-4 flex-1">
-                <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                >
-                    Newly listed first
-                </button>
-                <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
-                >
-                    Oldest first
-                </button>
-            </div>
+            <div class="space-x-4 flex-1"></div>
             <span>
                 <button
                     class="border-2 p-1 border-gray text-white"

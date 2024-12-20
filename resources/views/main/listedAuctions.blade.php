@@ -1,32 +1,36 @@
 <x-app-layout>
-    <x-drawer drawer_id="listed-filter-drawer" title="Advanced Filtering" />
+    <x-drawer drawer_id="listed-filter-drawer" title="Advanced Filtering">
+        <form action="/" class="h-full">
+            <x-advancedSearch />
+        </form>
+    </x-drawer>
     <header
         class="mx-auto container pb-20 space-y-8 flex flex-col w-full bg-[url('/storage/images/hero.png')] bg-center bg-contain bg-no-repeat p-8"
     >
-        <x-searchBar placeholder="Search make, model, etc..." />
+        <x-searchBar.main></x-searchBar.main>
 
         <div class="flex items-center space-x-4">
             <h1 class="text-lg text-white">Filter</h1>
             <div class="space-x-4 flex-1">
                 <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
+                    class="p-2 min-w-40 hover:scale-105 transition-all text-lg text-white gradient2 rounded-lg"
                 >
                     declined
                 </button>
                 <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
+                    class="p-2 min-w-40 hover:scale-105 transition-all text-lg text-white gradient2 rounded-lg"
                 >
                     live
                 </button>
 
                 <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
+                    class="p-2 min-w-40 hover:scale-105 transition-all text-lg text-white gradient2 rounded-lg"
                 >
                     scheduled
                 </button>
 
                 <button
-                    class="p-2 min-w-40 text-lg text-white gradient2 rounded-lg"
+                    class="p-2 min-w-40 hover:scale-105 transition-all text-lg text-white gradient2 rounded-lg"
                 >
                     completed
                 </button>
@@ -40,7 +44,7 @@
                     aria-controls="listed-filter-drawer  "
                 >
                     <i class="fas fa-sort-amount-down-alt"></i>
-                    <span> Filter </span>
+                    <span>Advanced Filter </span>
                 </button>
             </span>
         </div>

@@ -2,13 +2,14 @@
 
 <div
     id="{{ $drawer_id }}"
-    class="h-screen bg-white fixed top-0 right-0 z-40 p-4 overflow-y-auto transition-transform translate-x-full w-80"
+    class="h-screen myBg fixed top-0 right-0 z-40 p-4 overflow-y-auto transition-transform translate-x-full w-80 flex flex-col"
     tabindex="-1"
     aria-labelledby="drawer-right-label"
 >
-    <h5
+     <div>
+        <h5
         id="drawer-right-label"
-        class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"
+        class="inline-flex items-center mb-4 text-base font-semibold text-white dark:text-white"
     >
         {{ $title }}
     </h5>
@@ -16,7 +17,7 @@
         type="button"
         data-drawer-hide="{{ $drawer_id }}"
         aria-controls="{{ $drawer_id }}"
-        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+        class="text-white bg-transparent hover:bg-gray-200 hover:text-white rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
     >
         <svg
             class="w-3 h-3"
@@ -35,7 +36,8 @@
         </svg>
         <span class="sr-only">Close menu</span>
     </button>
-    <div>
+     </div>
+    <div class="flex-1 ">
         <!-- drawer content -->
         {{ $slot }}
     </div>
