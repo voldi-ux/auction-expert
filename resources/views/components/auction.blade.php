@@ -59,12 +59,12 @@ $increment = $auction->bid_increment;
                         R{{rand(0,40)}}K
                      </h1>
                </div>
-          <div class="mt-auto flex space-x-4 items-center justify-center">
+          <div class="mt-auto flex space-x-4 items-center justify-center myBg p-2">
                <div>
                   <h1 class="text-white font-size ">Bid Amount  </h1>
                </div>
                 @foreach($auto_bids as $bid)   
-                <button onclick="auction.quickBid(this)" value="{{ ($auction->getTopBid() + $bid*$auction->bid_increment) }}" auction="{{$auction->id}}" class="transition-all hover:-translate-y-2 hover:text-orange min-w-20 font-bold text-lg rounded-full text-gray color-white  auto-bid-{{$auction->id}}">
+                <button onclick="auction.quickBid(this)" value="{{ ($auction->getTopBid() + $bid*$auction->bid_increment) }}" auction="{{$auction->id}}" class="transition-all hover:-translate-y-2 hover:text-orange min-w-20 font-bold text-lg rounded-full text-yellow-500  font-semibold auto-bid-{{$auction->id}}">
                      
                         R {{number_format($auction->getTopBid() + $bid*$auction->bid_increment)}}
                      

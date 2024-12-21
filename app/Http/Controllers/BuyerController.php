@@ -27,7 +27,9 @@ class BuyerController
 
     public function join_auction(Auction $auction, Request $request)
     {
-        // to do:  again make sure the auction is not closed
+        // to do:  again make sure the auction is not closed && that this m
+        
+        if ($request->user()->is_in_auction($auction->id)) return redirect(route("entered_auctions"));
         $auction->users()->attach(Auth::user()->id);
         //an email/notifcation should sent to the user indicating thier payment was successfull and they have been joined the auction. The message should include some information about the auction e.g current top bid and remaing time
         return redirect(route("entered_auctions"))->with(["message" => "you have successfully joined an auction"]);
