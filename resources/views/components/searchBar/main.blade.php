@@ -1,5 +1,6 @@
 
 <form class="w-full text-lg text-white space-y-4">
+  <input type="hidden" name="search" value="true"/>
   <div class="grid md:grid-cols-2 md:gap-6">
     <div class="relative z-0 w-full mb-5 group">
         <input type="text"  name="make" id="make" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -11,7 +12,7 @@
     </div>
   </div>
   <div class="grid md:grid-cols-2 md:gap-6">
-    <x-select name="conditions">
+    <x-select name="condition">
         <x-conditionsOptions />
     </x-select>
     
@@ -20,5 +21,13 @@
     </x-select>
     
   </div>
-  <button type="submit" class="mx-auto block text-white bg-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center gradient2 ">Search</button>
+  
+  <div class="flex space-x-4  justify-center "> 
+      <button type="submit" class="w-40 hover:scale-105 transition-all text-white bg-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center gradient2 ">Search</button>
+  
+      <button form="reset" type="submit" class="text-white hover:scale-105 transition-all  bg-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-40  px-5 py-2.5 text-center  ">Reset filter</button>
+  </div>
 </form>
+<form id ="reset" action="{{url()->current()}}" >
+        
+  </form>

@@ -1,4 +1,4 @@
-@props(["auction_ref" => "CT000000000", "auction"])
+@props(["auction_ref" => "CT000000000", "car"])
 
 <!-- drawer component -->
 <div
@@ -37,7 +37,7 @@
             <h1 class="text-center text-3xl font-semibold">
                 How would you like to pay the deposit ?
             </h1>
-            <form action="{{route('pay_deposit', $auction->id)}}" method="post">
+            <form action="{{route('pay_deposit', $car->auction->id)}}" method="post">
                 @csrf
                 <button
                     class="p-2 text-lg animate-pulse bg-dark1 w-60 text-white rounded-full justify-center"

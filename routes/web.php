@@ -19,7 +19,7 @@ use Spatie\LaravelPdf\Facades\Pdf;
 //geenral
 Route::get("/", [AuctionController::class, "home"])->name("home");
 
-Route::get("/auction/{auction}", [AuctionController::class, "auction_view"])->name("auction_view");
+Route::get("/auction/{car}", [AuctionController::class, "auction_view"])->name("auction_view");
 
 
 //this too should be refactored later on

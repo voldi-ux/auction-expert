@@ -107,28 +107,28 @@
 
             <div class="flex">
                 <div class="flex-1 mr-8 h-long gradient2">
-                    <x-carViewSlider :car="$auction->car" />
+                    <x-carViewSlider :car="$car" />
                 </div>
                 <div class="w-80 h-min gradient2 p-4 space-y-8">
                     <div
                         class="flex px-2 border-b-2 border-white items-center pb-1"
                     >
                         <h1 class="tex-lg text-white font-semibold">
-                            {{$auction->car->make}}
-                            {{$auction->car->model}}
+                            {{$car->make}}
+                            {{$car->model}}
                         </h1>
                     </div>
 
                     <div class="p-2 gradient3 text-center rounded-lg">
-                        @if($auction->status == "scheduled")
+                        @if($car->status == "scheduled")
                         <h1 class="text-3xl text-white font-semibold py-4">
                             Starts Soon
                         </h1>
                         @else
                         <h1 class="text-lg text-white">Top Bid</h1>
-                        @if($auction->getTopBid() > 0)
+                        @if($car->auction->getTopBid() > 0)
                         <h1 class="text-3xl text-white font-bold">
-                            R {{number_format($auction->getTopBid())}}
+                            R {{number_format($car->auction->getTopBid())}}
                         </h1>
                         @else
                         <h1 class="text-3xl text-white font-bold">NO BIDS</h1>
@@ -141,13 +141,13 @@
                         <div class="text-center">
                             <h1 class="text-lg">Time remaining</h1>
                             <h1 class="text-sm">
-                                {{$auction->remainingTimeFormated()}}
+                                {{$car->auction->remainingTimeFormated()}}
                             </h1>
                         </div>
                         <div class="text-center">
                             <h1 class="text-lg">Closing date</h1>
                             <h1 class="text-xs">
-                                {{$auction->formatedEndtime()}}
+                                {{$car->auction->formatedEndtime()}}
                             </h1>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                             <h1 class="text-white">Car Mileage</h1>
                         </div>
 
-                        <h1 class="text-gray">{{$auction->car->mileage}}Km</h1>
+                        <h1 class="text-gray">{{$car->mileage}}Km</h1>
                     </div>
 
                     <div class="flex justify-between px-2">
@@ -165,7 +165,7 @@
                             <h1 class="text-white">Fuel type</h1>
                         </div>
 
-                        <h1 class="text-gray">{{$auction->car->fuel_type}}</h1>
+                        <h1 class="text-gray">{{$car->fuel_type}}</h1>
                     </div>
                     <div class="flex justify-between px-2">
                         <div>
@@ -173,7 +173,7 @@
                         </div>
 
                         <h1 class="text-gray">
-                            {{$auction->car->transmission}}
+                            {{$car->transmission}}
                         </h1>
                     </div>
 
@@ -183,7 +183,7 @@
                         </div>
 
                         <h1 class="text-gray">
-                            R {{number_format($auction->start_bid_amount)}}
+                            R {{number_format($car->auction->start_bid_amount)}}
                         </h1>
                     </div>
 
@@ -210,7 +210,7 @@
                         Place A Bid
                     </button>
 
-                    <x-paymentType :auction="$auction" />
+                    <x-paymentType :car="$car" />
 
                     @endcan @endauth
 
@@ -231,47 +231,47 @@
                     </h1>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Make</h1>
-                        <h1 class="text-gray">{{$auction->car->make}}</h1>
+                        <h1 class="text-gray">{{$car->make}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Model</h1>
-                        <h1 class="text-gray">{{$auction->car->model}}</h1>
+                        <h1 class="text-gray">{{$car->model}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Body Type</h1>
-                        <h1 class="text-gray">{{$auction->car->body_type}}</h1>
+                        <h1 class="text-gray">{{$car->body_type}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Year Made</h1>
-                        <h1 class="text-gray">{{$auction->car->year}}</h1>
+                        <h1 class="text-gray">{{$car->year}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Mileage</h1>
-                        <h1 class="text-gray">{{$auction->car->mileage}}</h1>
+                        <h1 class="text-gray">{{$car->mileage}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Code</h1>
-                        <h1 class="text-gray">{{$auction->car->code}}</h1>
+                        <h1 class="text-gray">{{$car->code}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Car Condition</h1>
-                        <h1 class="text-gray">{{$auction->car->condition}}</h1>
+                        <h1 class="text-gray">{{$car->condition}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Colour</h1>
-                        <h1 class="text-gray">{{$auction->car->Colour}}</h1>
+                        <h1 class="text-gray">{{$car->Colour}}</h1>
                     </div>
 
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Number Of Seats</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->number_of_seats}}
+                            {{$car->number_of_seats}}
                         </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Number Of Doors</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->number_of_doors}}
+                            {{$car->number_of_doors}}
                         </h1>
                     </div>
                 </div>
@@ -281,44 +281,44 @@
                     </h1>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Fuel Type</h1>
-                        <h1 class="text-gray">{{$auction->car->fuel_type}}</h1>
+                        <h1 class="text-gray">{{$car->fuel_type}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Fuel Tank Capacity</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->tank_capacity}}
+                            {{$car->tank_capacity}}
                         </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Fuel Consumption</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->fuel_consumption}}
+                            {{$car->fuel_consumption}}
                         </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Engine Capacity</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->engine_capacity}}
+                            {{$car->engine_capacity}}
                         </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Cylinder Layout</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->cylinder_layout}}
+                            {{$car->cylinder_layout}}
                         </h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Gears</h1>
-                        <h1 class="text-gray">{{$auction->car->gears}}</h1>
+                        <h1 class="text-gray">{{$car->gears}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Drive Type</h1>
-                        <h1 class="text-gray">{{$auction->car->drive}}</h1>
+                        <h1 class="text-gray">{{$car->drive}}</h1>
                     </div>
                     <div class="flex justify-between mb-2">
                         <h1 class="text-white">Car Transmission</h1>
                         <h1 class="text-gray">
-                            {{$auction->car->transmission}}
+                            {{$car->transmission}}
                         </h1>
                     </div>
                 </div>
@@ -329,7 +329,7 @@
                         Car Description
                     </h1>
                     <p class="text-white">
-                        {{$auction->car->description}}
+                        {{$car->description}}
                     </p>
                 </div>
                 <div></div>
@@ -342,8 +342,8 @@
             </div>
 
             <div class="flex flex-wrap gap-8">
-                @forelse ($similar as $auction)
-                <x-card.live :auction="$auction" />
+                @forelse ($similar as $car)
+                <x-card.live :auction="$car" />
                 @empty
                 <x-nothingToShow :msg="$msg" />
                 @endforelse

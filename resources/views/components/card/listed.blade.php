@@ -1,4 +1,6 @@
-@props(["car"]) @php $style = ""; switch($car->status) { case "active": $style =
+@props(["car"]) 
+
+@php $style = ""; switch($car->status) { case "active": $style =
 "bg-green-500"; break; case "pending": $style = "bg-gray"; break; case
 "declined": $style = "bg-red-500"; break; default: $style = "bg-white"; }
 @endphp

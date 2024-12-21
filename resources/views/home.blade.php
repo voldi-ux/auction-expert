@@ -27,6 +27,7 @@
         <x-drawer drawer_id="home-filter-drawer" title="Advanced Drawer">
              <form action="/" class="h-full">
                  <x-advancedSearch />
+                 <input type="hidden" name="advanced" value="true"/>
              </form>
         </x-drawer>
 

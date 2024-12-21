@@ -18,21 +18,21 @@
             class="h-40 block p-2"
         >
             <img
-                src="/storage/{{$auction->car->images[0]->path}}"
+                src="/storage/{{$auction->images[0]->path}}"
                 class="h-full block"
             />
         </a>
     </div>
     <h1 class="text-lg text-white text-center font-semibold">
-        {{$auction->car->make}}
-        {{$auction->car->model}}
+        {{$auction->make}}
+        {{$auction->model}}
     </h1>
     <div class="flex justify-between px-2">
         <div>
             <h1 class="text-white">Car Mileage</h1>
         </div>
 
-        <h1 class="text-gray">{{$auction->car->mileage}}Km</h1>
+        <h1 class="text-gray">{{$auction->mileage}}Km</h1>
     </div>
 
     <div class="flex justify-between px-2">
@@ -40,14 +40,14 @@
             <h1 class="text-white">Fuel type</h1>
         </div>
 
-        <h1 class="text-gray">{{$auction->car->fuel_type}}</h1>
+        <h1 class="text-gray">{{$auction->fuel_type}}</h1>
     </div>
     <div class="flex justify-between px-2">
         <div>
             <h1 class="text-white">Transmission</h1>
         </div>
 
-        <h1 class="text-gray">{{$auction->car->transmission}}</h1>
+        <h1 class="text-gray">{{$auction->transmission}}</h1>
     </div>
 
     <p class="gradient3 text-center p-4 text-lg text-white font-bold mx-2">
@@ -57,14 +57,14 @@
     <div class="flex justify-between px-2">
         <h1 class="text-white text-sm">Starting Bid</h1>
         <h1 class="text-2xl font-bold text-orange">
-            R {{number_format($auction->start_bid_amount)}}
+            R {{number_format($auction->auction->start_bid_amount)}}
         </h1>
     </div>
 
     <div class="flex justify-between px-2">
         <h1 class="text-white text-sm">Scheduled for</h1>
         <h1 class="text-xs font-bold text-orange">
-            {{$auction->formatScheduledDate()}}
+            {{$auction->auction->formatScheduledDate()}}
         </h1>
     </div>
 

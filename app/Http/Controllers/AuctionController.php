@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class AuctionController
@@ -14,9 +15,48 @@ class AuctionController
     /**
      * Display a listing of the resource.
      */
-    public function get_all_running_auctions()
+    public function get_all_running_auctions(Request $request)
     {
-        $auctions = Auction::with(["car", "bids"])->where("status", "active")->paginate(8);
+       $advancedSearch =  $request->query("advanced", false);
+       $search =  $request->query("search", false);
+       $make = $request->query("make");
+       $model = $request->query("model");
+       $fuel = $request->query("fuel_type");
+       $transmission = $request->query("transmission");
+       $drive = $request->query("drive");
+       $condition = $request->query("condition");
+       $body_type = $request->query("body_type");
+       $sort = $request->query("sort");
+
+
+       $sort_str = $sort == "new" ? "asc" : "desc";
+
+        $auctions  = null;
+
+       if($advancedSearch) {
+
+           $auctions = Car::with("auction")->where(function (Builder $query) use($make, $model,$drive, $body_type, $condition, $transmission) {
+            $query->orWhere("make", $make)
+           ->orWhere("model", $model)
+           ->orWhere("fuel_type", $fuel)
+           ->orWhere("drive", $drive)
+           ->orWhere("body_type", $body_type);
+           } )
+           ->where("status", "active")
+           ->paginate(8)->withQueryString();
+       } else if ($search) {
+          $auctions = Car::with("auction")->where(function (Builder $query) use($make, $model, $sort_str, $condition){
+            $query->orWhere("make", $make)
+           ->orWhere("model", $model)
+           ->orWhere("condition", $condition);
+           } )
+           ->where("status", "active")
+          ->orderBy("created_at", $sort_str)
+           ->paginate(8)->withQueryString();
+       } else {
+           $auctions = Car::with(["auction"])->where("status", "active")->paginate(8);
+       }
+       
 
         return view("main.runningAuctions", ['live_auctions' => $auctions]);
     }
@@ -33,28 +73,114 @@ class AuctionController
     }
 
     // get all the scheduled auctions for admin to view and ponential manage
-    public function get_scheduled_auctions()
-    {
-        $auctions = Auction::with(["car"])->where("status", "scheduled")->paginate(8);
+    public function get_scheduled_auctions(Request $request)
+    {   
+       $advancedSearch =  $request->query("advanced", false);
+       $search =  $request->query("search", false);
+       $make = $request->query("make");
+       $model = $request->query("model");
+       $fuel = $request->query("fuel_type");
+       $transmission = $request->query("transmission");
+       $drive = $request->query("drive");
+       $condition = $request->query("condition");
+       $body_type = $request->query("body_type");
+       $sort = $request->query("sort");
+
+
+       $sort_str = $sort == "new" ? "asc" : "desc";
+
+        $auctions  = null;
+
+       if($advancedSearch) {
+
+           $auctions = Car::with("auction")->where(function (Builder $query) use($make, $model,$drive, $body_type, $condition, $transmission, $fuel) {
+            $query->orWhere("make", $make)
+           ->orWhere("model", $model)
+           ->orWhere("fuel_type", $fuel)
+           ->orWhere("drive", $drive)
+           ->orWhere("body_type", $body_type)
+           ->orWhere("transmission", $transmission);
+           } )
+           ->where("status", "scheduled")
+           ->paginate(8)->withQueryString();
+       } else if ($search) {
+          $auctions = Car::with("auction")->where(function (Builder $query) use($make, $model, $sort_str, $condition){
+            $query->orWhere("make", $make)
+           ->orWhere("model", $model)
+           ->orWhere("condition", $condition);
+           } )
+           ->where("status", "scheduled")
+          ->orderBy("created_at", $sort_str)
+           ->paginate(8)->withQueryString();
+       } else {
+           $auctions = Car::with(["auction"])->where("status", "scheduled")->paginate(8);
+       }
+
         return view("main.scheduled", ['scheduled_auctions' => $auctions]);
     }
 
 
     // returns live auctions for all users
-    public function home()
+    public function home(Request $request)
     {
-        $auctions = Auction::with(["car"])->where("status", "active")->paginate(8);
-        $scheduled = Auction::with(["car"])->where("status", "scheduled")->latest()->limit(8)->get();
+       $advancedSearch =  $request->query("advanced", false);
+       $search =  $request->query("search", false);
+       $make = $request->query("make");
+       $model = $request->query("model");
+       $fuel = $request->query("fuel_type");
+       $transmission = $request->query("transmission");
+       $drive = $request->query("drive");
+       $condition = $request->query("condition");
+       $body_type = $request->query("body_type");
+       $sort = $request->query("sort");
+
+
+       $sort_str = $sort == "new" ? "asc" : "desc";
+
+        $auctions = null;
+
+       if($advancedSearch) {
+
+           $auctions = Car::with(["auction"])->where(function (Builder $query) use($make, $model,$drive, $body_type, $fuel, $condition, $transmission) {
+            $query->orWhere("make", $make)
+           ->orWhere("model", $model)
+           ->orWhere("fuel_type", $fuel)
+           ->orWhere("drive", $drive)
+           ->orWhere("body_type", $body_type);
+           } )
+           ->where("status", "active")
+           ->paginate(8)->withQueryString();
+       } else if ($search) {
+          $auctions = Car::with(["auction"])->where(function (Builder $query) use($make, $model, $sort_str, $condition){
+            $query->orWhere("make", $make)
+           ->orWhere("model", $model)
+           ->orWhere("condition", $condition);
+           } )
+           ->where("status", "active")
+          ->orderBy("created_at", $sort_str)
+           ->paginate(8)->withQueryString();
+       } else {
+           $auctions = Car::with(["auction"])->where("status", "active")->paginate(8);
+       }
+
+        $scheduled = Car::with(["auction"])->where("status", "scheduled")->latest()->limit(8)->get();
         return view("home", ['live_auctions' => $auctions, "scheduled" => $scheduled]);
     }
 
 
-    public function auction_view(Auction $auction, Request $request)
+    public function auction_view(Car $car, Request $request)
     {
-        //should return live auctions that are similar to the current one being viewd
-        $similar = Auction::with(["car"])->where("status", "active")->limit(8)->get();
+        //To do: 
+        //make sure the returned item does not contain the current vehicle being viewd
+        $similar = Car::with(["auction"])->where("status", "active")->where(function (Builder $query) use($car) {
+            $query->orWhere("make", $car->make)
+           ->orWhere("model", $car->model)
+           ->orWhere("fuel_type", $car->fuel_type)
+           ->orWhere("transmission", $car->transmission)
+           ->orWhere("body_type", $car->drive);
+           } )->limit(8)->get();
 
-        return view("auctionView", ["auction" => $auction, "similar" => $similar]);
+        return view("auctionView", ["car" => $car, "similar" => $similar]);
     }
 
 

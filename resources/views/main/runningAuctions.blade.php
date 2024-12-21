@@ -3,8 +3,9 @@
 
 <x-app-layout>
     <x-drawer drawer_id="live-auction-filter-drawer" title="Advanced Filtering">
-        <form action="/" class="h-full">
+        <form action="{{route('running')}}" class="h-full">
             <x-advancedSearch />
+            <input type="hidden" name="advanced" value="true"/>
         </form>
     </x-drawer>
        <header

@@ -12,6 +12,9 @@
     <x-select name="fuel_type" class="w-full text-orange">
         <x-fuelTypeOptions />
     </x-select>
+    <x-select name="body_type" class="w-full text-orange">
+        <x-carBodyTypeOptions  />
+    </x-select>
 
     <x-select name="drive" class="w-full text-orange">
         <x-driveTypeOptions />

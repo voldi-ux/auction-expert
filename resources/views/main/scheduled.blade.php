@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-drawer drawer_id="scheduled-filter-drawer" title="Advanced Filtering">
-        <form action="/" class="h-full">
+        <form action="{{route('schedules')}}" class="h-full">
             <x-advancedSearch />
+                <input type="hidden" name="advanced" value="true"/>
         </form>
     </x-drawer>
     <header

@@ -10,7 +10,7 @@
             href="{{route('auction_view', $auction->id)}}"
         >
             <img
-                src="/storage/{{$auction->car->images[0]->path}}"
+                src="/storage/{{$auction->images[0]->path}}"
                 class="h-full mx-auto"
             />
         </a>
@@ -18,14 +18,14 @@
 
     <div class="px-2">
         <h1 class="tex-lg text-white font-semibold text-center">
-            {{$auction->car->make}} {{$auction->car->model}}
+            {{$auction->make}} {{$auction->model}}
         </h1>
     </div>
     <div class="flex flex-col px-2 items-center justify-center">
         <h1 class="text-white">Top Bid</h1>
-        @if($auction->getTopBid() > 0)
+        @if($auction->auction->getTopBid() > 0)
         <h1 class="text-3xl text-white font-bold">
-            R {{number_format($auction->getTopBid())}}
+            R {{number_format($auction->auction->getTopBid())}}
         </h1>
         @else
         <h1 class="text-3xl text-white font-bold">NO BIDS</h1>
@@ -35,13 +35,13 @@
         <div class="text-center">
             <h1 class="text-sm">Time remaining</h1>
             <h1 class="text-sm">
-                {{$auction->remainingTimeFormated()}}
+                {{$auction->auction->remainingTimeFormated()}}
             </h1>
         </div>
         <div class="text-center">
             <h1 class="text-sm">Closing date</h1>
             <h1 class="text-xs">
-                {{$auction->formatedEndtime()}}
+                {{$auction->auction->formatedEndtime()}}
             </h1>
         </div>
     </div>

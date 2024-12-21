@@ -4,8 +4,9 @@
 later."; @endphp
 <x-app-layout>
     <x-drawer drawer_id="listing-filter-drawer" title="Advanced Filtering">
-        <form action="/" class="h-full">
+        <form action="{{'listings'}}" class="h-full">
             <x-advancedSearch />
+            <input type="hidden" name="advanced" value="true"/>
         </form>
     </x-drawer>
     <header
