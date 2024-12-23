@@ -24,11 +24,11 @@
     <div class="flex flex-col px-2 items-center justify-center">
         <h1 class="text-white">Top Bid</h1>
         @if($auction->auction->getTopBid() > 0)
-        <h1 class="text-3xl text-orange font-bold">
+        <h1 auction-id="{{$auction->auction->id}}" class="card-top-amount text-3xl text-orange font-bold">
             R {{number_format($auction->auction->getTopBid())}}
         </h1>
         @else
-        <h1 class="text-3xl text-orange font-bold">NO BIDS</h1>
+        <h1 auction-id="{{$auction->auction->id}}" class="text-3xl text-orange font-bold card-top-amount">NO BIDS</h1>
         @endif
     </div>
     <div class="flex justify-between px-2">
@@ -74,3 +74,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.onload = () => {
+         
+        let elements = document.getElementsByClassName("card-top-amount")
+
+       for(let h of elements) {
+        auction.registerTop(h)
+       }
+    }
+</script>

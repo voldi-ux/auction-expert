@@ -42,7 +42,7 @@ export default {
                 slide: {
                     "0%": {
                         transform: "translateX(0) translateY(0)",
-                        opcaity: 1,
+                        opacity: 1,
                     },
                     "100%": {
                         transform: "translateX(1000%) translateY(-1000%)",

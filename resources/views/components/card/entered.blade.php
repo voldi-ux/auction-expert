@@ -23,13 +23,13 @@
     </div>
     <div class="flex flex-col px-2 items-center justify-center">
         <h1 class="text-white">Top Bid</h1>
-        @if($auction->getTopBid() > 0)
-        <h1 class="text-3xl text-white font-bold">
+        <h1 id="card-top-amount-{{$auction->id}}"  auction-id = "{{$auction->id}}" class="card-top-amount text-3xl text-white font-bold">
+            @if($auction->getTopBid() > 0)
             R {{number_format($auction->getTopBid())}}
+            @else
+            NO BIDS
+            @endif
         </h1>
-        @else
-        <h1 class="text-3xl text-white font-bold">NO BIDS</h1>
-        @endif
     </div>
     <div class="flex justify-between px-2 text-white">
         <div class="text-center">
@@ -70,3 +70,14 @@
     <x-auction :auction="$auction" />
 </x-modal>
 
+
+<script>
+    window.onload = () => {
+         auction.registerAuctions()
+        let elements = document.getElementsByClassName("card-top-amount")
+
+       for(let h of elements) {
+        auction.registerTop(h)
+       }
+    }
+</script>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\NewBidEvent;
+use App\Events\TestEvent;
 use App\Http\Middleware\HasRole;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
@@ -9,10 +11,25 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyticController;
 use App\Http\Controllers\BuyerController;
 use Spatie\LaravelPdf\Facades\Pdf;
+use Pusher\Pusher;
 
 
 
 
+//test
+
+Route::get("/dispatch-event", function () {
+     $data = ["topBid" => 10000, "bids" => [10, 20, 40, 40, 200000]];
+
+    broadcast(new NewBidEvent($data, request()->query("auction")));
+
+    return "yes";
+});
+
+
+Route::get("/test-event", function () {
+    return view("socket");
+});
 
 
 

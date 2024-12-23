@@ -2,28 +2,24 @@
 
 namespace App\Events;
 
-use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Support\Facades\Log;
 
-class NewSellerAdded
+class TestEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
     /**
      * Create a new event instance.
      */
-    public function __construct(public User $user, public String $password)
+    public function __construct(public $data)
     {
-      
-
         //
+
+    
     }
 
     /**
@@ -33,6 +29,13 @@ class NewSellerAdded
      */
     public function broadcastOn(): array
     {
-        return [];
+        return [
+            new Channel('auction-13')
+        ];
+    }
+
+    public function broadcastAs(): string
+    {
+        return "bid";
     }
 }

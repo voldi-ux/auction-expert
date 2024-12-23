@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewBidEvent;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\Auction;
@@ -65,11 +66,9 @@ class AuctionController
     public function auctions_entered()
     {
         // eager load the auctions and paginate them
-        $user = User::with(["auctions" => function ($q) {
-            $q->paginate(10); // 10 auction per page
-        }])->find(Auth::user()->id);
+        $auctions = User::find(Auth::user()->id)->auctions()->where("status", "active")->paginate(5);
 
-        return view("main.auctionsEntered", ["auctions" => $user->auctions]);
+        return view("main.auctionsEntered", ["auctions" =>$auctions]);
     }
 
     // get all the scheduled auctions for admin to view and ponential manage
@@ -240,8 +239,9 @@ class AuctionController
         foreach (range(1, 5) as $i) {
             $bids[$i] = $currentTop + $auction->bid_increment * $i;
         }
-
-        return Response()->json(["topBid" => $currentTop, "bids" => $bids]);
+        $data = ["topBid" => $currentTop, "bids" => $bids];
+        broadcast(new NewBidEvent($data, $auction->id))->toOthers();
+        return Response()->json($data);
     }
 
 
