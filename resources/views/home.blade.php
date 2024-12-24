@@ -75,6 +75,7 @@
               <x-searchBar.main ></x-searchBar.main>
             </header>
         </div>
+      
 
         <section class="container mx-auto mb-20">
             <div class="mb-20 flex justify-between">
@@ -92,7 +93,7 @@
                     </button>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-8">
+            <div class="flex flex-wrap gap-8 justify-center">
                 @forelse ($live_auctions as $auction)
                 <x-card.live :auction="$auction" />
                 @empty
@@ -104,7 +105,7 @@
                 {{$live_auctions->links()}}
             </div>
         </section>
-
+     <x-banner />
         <section class="container mx-auto mb-20">
             <div class="flex justify-between mb-20">
                 <h1 class="text-3xl text-white font-semibold">
@@ -115,7 +116,7 @@
                 >
             </div>
 
-            <div class="flex flex-wrap gap-8">
+            <div class="flex flex-wrap gap-8 justify-center">
                 @forelse ($scheduled as $auction)
                 <x-card.scheduled :auction="$auction" />
                 @empty
@@ -123,6 +124,9 @@
                 @endforelse
             </div>
         </section>
+       
+      
+
         <div class="gradient2">
             <footer class="container mx-auto flex flex-col items-center">
                 <div><img src="/storage/images/logo.png" class="w-40" /></div>

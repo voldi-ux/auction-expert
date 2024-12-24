@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Auction;
 use App\Models\Car;
 use App\Models\Image;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -26,10 +27,12 @@ class DatabaseSeeder extends Seeder
         $sellers = User::factory()->count(10)->hasProfile()->hasAddress()->create();
         $buyers = User::factory()->count(10)->hasProfile()->hasAddress()->create();
         
+        $s = [["status" => "pending"], ["status" => "active"], ["status" => "declined"], ["status" => "done"], ["status" => "scheduled"]];
+
         foreach($sellers as $seller) {
             $seller->roles()->attach(2); // assign roles of sellers
             //for each seller, create 10 cars with 5 images, vehicle docs and a single auction
-            $cars = Car::factory()->count(10)->has(Image::factory()->count(5))->has(VehicleFile::factory()->count(5))->hasAuction()->for($seller)->create();
+            $cars = Car::factory()->sequence($s[0], $s[1], $s[2], $s[3], $s[4])->count(10)->has(Image::factory()->count(5))->has(VehicleFile::factory()->count(5))->has(Auction::factory()->sequence($s[0],$s[1], $s[2], $s[3], $s[4]))->for($seller)->create();
         };
 
         foreach($buyers as $buyer) {

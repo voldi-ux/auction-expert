@@ -12,7 +12,7 @@
             @endforelse
         </div>
 
-        <div class="flex justify-center space-x-4">
+        <div class="flex justify-center space-x-4 mt-20">
             {{$auctions->links()}}
         </div> 
     </section>
