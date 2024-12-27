@@ -12,6 +12,7 @@
 -   Create an env file using the provided example
 -   Specify your sql credential in the env file
 -   Add your stripe api keys to the env file together with the stripe price id for deposite
+-   Install node dependencies```npm install```
 -   Run the database migration command ```php artisan migrate:fresh```
 -   Seed the database using artsian command ```php artisan db:seed```
 -   Start the work queue using ```php artisan queue:work```
