@@ -161,7 +161,7 @@
                     @if(request()->is('app/analytic'))
                     <button class="space-x-4 transition-all hover:text-yellow-600 hover:scale-105">
                         <i class="fas fa-download"></i>
-                        <span> Downlaod Report </span>
+                        <span> Download Report </span>
                     </button>
                      @else
                      <span></span>

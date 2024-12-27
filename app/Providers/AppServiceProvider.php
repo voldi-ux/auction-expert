@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define("is-admin", function($user){return  $user->hasRole("Admin");});
         Gate::define("is-seller", function($user){return  $user->hasRole("Seller");});
         Gate::define("is-buyer", function($user){return  $user->hasRole("Buyer");});
+        Gate::define("is-verified", function($user){return  $user->is_verified();});
         Gate::define("see-bidding-button", function($user){return  Auth::guest() || $user->hasRole("Buyer");});
 
         Event::listen(NewSeller::class, SendEmailToNewSeller::class);

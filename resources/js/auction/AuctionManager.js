@@ -11,7 +11,11 @@ class AuctionManager {
                 let res = await axios.post(`/buyer/place-bid/${auctionId}`, {
                     amount,
                 });
-                console.log(res.data);
+                
+                if (res.data.message) { 
+                    alert(res.data.message);
+                    return {topBid: null};
+                }
                 return res.data;
             } catch (error) {
                 alert("could not place your bid at the moment");

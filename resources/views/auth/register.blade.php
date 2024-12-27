@@ -31,11 +31,11 @@
                     type="password"
                     placeholder="Confirm Password"
                 />
-                   <div class="space-x-2 flex">
-                  <h1 class="text-gray">
+                   <div class="space-x-2 flex items-center">
+                  <h1 class="text-gray ">
                      Alaready have an account ? 
                   </h1>
-                  <a href="{{route('login')}}" class="text-white text-sm">Sign In</a>
+                  <a href="{{route('login')}}" class="text-white text-sm hover:text-orange transition-all">Sign In</a>
         
                </div>
                 <x-auth.button > 

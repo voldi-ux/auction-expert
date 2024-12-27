@@ -30,6 +30,6 @@
             class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
             >Edit Seller</a
         >
-        <a href="#" class="font-medium text-white p-2 bg-red-600">Delete </a>
+        <a href="#" class="font-medium text-white p-2 bg-red-600">Suspend </a>
     </td>
 </tr>

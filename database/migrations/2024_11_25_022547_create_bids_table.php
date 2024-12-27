@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Auction::class);
+            $table->bigInteger("bidder_id");
             $table->integer("amount");
             $table->timestamps();
         });

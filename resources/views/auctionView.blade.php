@@ -199,8 +199,11 @@
                     >
                         Login To Make Bids
                     </button>
-                    @endguest @auth @can("is-buyer") @csrf
-                    <button
+                    @endguest 
+                    @auth @can("is-buyer")
+
+                     @can("is-verified")
+                        <button
                         data-drawer-target="drawer-payment-type"
                         data-drawer-show="drawer-payment-type"
                         data-drawer-placement="bottom"
@@ -211,6 +214,15 @@
                     </button>
 
                     <x-paymentType :car="$car" />
+                    @else
+                        <button
+                        id="bid-btn"
+                        class="p-2 flex justify-center items-center w-full bg-dark1 rounded-lg text-lg text-white"
+                    >
+                        Verify Your Email To Make Bids
+                    </button>
+                     @endcan
+                 
 
                     @endcan @endauth
 

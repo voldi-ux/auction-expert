@@ -1,3 +1,7 @@
+@if(session('status'))
+<x-toast type="success" :message="session('status')"/>
+@endif
+
 <x-guest-layout>
    <div class="container mx-auto flex w-full h-full justify-center items-center ">
              <div class=" md:w-1/2 min-h-80 p-4 rounded-lg gradient2" >
@@ -7,15 +11,15 @@
                @CSRF
                 <x-input name="email" placeholder="Email" />
                 <x-input name="password" type="password"  placeholder="Enter your password" />
-               <div class="space-x-2 flex">
+               <div class="space-x-2 flex items-center">
                   <h1 class="text-gray">
                      Do not have an account ? 
                   </h1>
-                  <a href="{{route('register')}}" class="text-white text-sm">Register</a>
+                  <a href="{{route('register')}}" class="text-white text-sm hover:text-orange transition-all">Register</a>
                   <h2 class="text-gray">
                      OR
                   </h2>
-                  <a href="{{route('login')}}" class="text-white text-sm">Reset your password</a>
+                  <a href="{{route('password.email')}}" class="text-white text-sm hover:text-orange transition-all">Reset your password</a>
                </div>
                  <x-auth.button > 
                    <h1>  Login</h1>

@@ -1,17 +1,20 @@
 <?php
 
-use App\Events\NewBidEvent;
+use Pusher\Pusher;
 use App\Events\TestEvent;
+use App\Events\NewBidEvent;
 use App\Http\Middleware\HasRole;
+use Spatie\LaravelPdf\Facades\Pdf;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnalyticController;
-use App\Http\Controllers\BuyerController;
-use Spatie\LaravelPdf\Facades\Pdf;
-use Pusher\Pusher;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
@@ -33,6 +36,9 @@ Route::get("/test-event", function () {
 
 
 
+
+
+
 //geenral
 Route::get("/", [AuctionController::class, "home"])->name("home");
 
@@ -40,7 +46,7 @@ Route::get("/auction/{car}", [AuctionController::class, "auction_view"])->name("
 
 
 //this too should be refactored later on
-Route::middleware("auth")->group(function () {
+Route::middleware(["auth", "verified"])->group(function () {
     Route::get("/app/analytic", function () {
         return view("main.analytic");
     })->name("analytics");
@@ -66,7 +72,7 @@ Route::middleware("auth")->group(function () {
 
 
 // buyer routes
-Route::middleware(["auth", "hasRole" . ":Buyer"])->prefix("buyer")->group(function () {
+Route::middleware(["auth", "verified", "hasRole" . ":Buyer"])->prefix("buyer")->group(function () {
     //todo
     // replace the car class with the auction class
     Route::get("/auctions-entered", [AuctionController::class, "auctions_entered"])->name("entered_auctions");
@@ -81,7 +87,7 @@ Route::middleware(["auth", "hasRole" . ":Buyer"])->prefix("buyer")->group(functi
 
 
 //seller actions
-Route::middleware(["auth", "hasRole" . ":Seller"])->prefix("seller")->group(function () {
+Route::middleware(["auth","verified", "hasRole" . ":Seller"])->prefix("seller")->group(function () {
     Route::get("/listed", [CarController::class, "listed_cars"])->name("listed");
     Route::get("/analytics", [AnalyticController::class, "seller_analytics"])->name("seller_analytics")->middleware(HasRole::class);
     Route::get("/list", [CarController::class, "list"])->name("list_car");
@@ -90,7 +96,7 @@ Route::middleware(["auth", "hasRole" . ":Seller"])->prefix("seller")->group(func
 
 
 //adimn actions
-Route::middleware(["auth", "hasRole" . ":Admin"])->prefix("admin")->group(function () {
+Route::middleware(["auth", "verified", "hasRole" . ":Admin"])->prefix("admin")->group(function () {
     Route::get("/sellers", [SellerController::class, "sellers"])->name("all_sellers");
     Route::post("/seller", [SellerController::class, "create"])->name("create_seller");
     Route::patch("/seller/{id}", [SellerController::class, "update"])->name("update_seller");

@@ -1,1 +1,1 @@
-  <button class="p-1 hover:scale-105 transition-all bg-white text-black text-lg w-40  self-center my-4" type="submit"> {{$slot}} </button>
+  <button class="p-1 text-white rounded-lg bg-dark1 hover:scale-105 transition-all  text-lg w-40  self-center my-4" type="submit"> {{$slot}} </button>
