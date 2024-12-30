@@ -1,6 +1,6 @@
 <x-app-layout>
     <section class="h-full w-full p-8 space-y-20">
-        <div class="flex justify-between">
+        <div class="flex justify-center flex-wrap gap-12">
             <div
                 class="h-20 w-60 select-none flex flex-col justify-center items-center text-white text-lg capitalize bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg"
             >

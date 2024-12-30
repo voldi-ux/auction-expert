@@ -16,12 +16,6 @@
             @else
             <x-profileForm.create />
             @endif
-            <button
-                class="w-full mt-20 p-4 bg-red-500 text-lg text-white"
-                form="changePassword"
-            >
-                Click here to change your password
-            </button>
         </div>
     </section>
 </x-app-layout>

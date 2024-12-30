@@ -2,10 +2,12 @@
 
 <a
     href="{{ __(route($routeName)) }}"
-    class="transition-all hover:text-yellow-600 space-x-4   cursor-pointer {{
+    class="transition-all hover:text-yellow-600    cursor-pointer {{
         $active ? 'text-yellow-600 text-white' : 'bg-transparent'
     }} "
 >
-    <i class="{{ $icon }}"></i>
+    <div class="inline-block w-8">
+        <i class="{{ $icon }}"></i>
+    </div>
     <span>{{ $title }}</span>
 </a>

@@ -17,29 +17,7 @@ use App\Http\Controllers\AnalyticController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
-
-
-//test
-
-Route::get("/dispatch-event", function () {
-     $data = ["topBid" => 10000, "bids" => [10, 20, 40, 40, 200000]];
-
-    broadcast(new NewBidEvent($data, request()->query("auction")));
-
-    return "yes";
-});
-
-
-Route::get("/test-event", function () {
-    return view("socket");
-});
-
-
-
-
-
-
-//geenral
+//genral routes
 Route::get("/", [AuctionController::class, "home"])->name("home");
 
 Route::get("/auction/{car}", [AuctionController::class, "auction_view"])->name("auction_view");
@@ -87,7 +65,7 @@ Route::middleware(["auth", "verified", "hasRole" . ":Buyer"])->prefix("buyer")->
 
 
 //seller actions
-Route::middleware(["auth","verified", "hasRole" . ":Seller"])->prefix("seller")->group(function () {
+Route::middleware(["auth", "verified", "hasRole" . ":Seller"])->prefix("seller")->group(function () {
     Route::get("/listed", [CarController::class, "listed_cars"])->name("listed");
     Route::get("/analytics", [AnalyticController::class, "seller_analytics"])->name("seller_analytics")->middleware(HasRole::class);
     Route::get("/list", [CarController::class, "list"])->name("list_car");
